@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Specialist to Trend Setter — PRFAQ Coach</title>
+
+  <!-- Fonts -->
+  <style>
+    @font-face {
+      font-family: 'AvantGarde';
+      src: url('./assets/fonts/AvantGardeForSalesforceW05-Dm.woff') format('woff');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'SalesforceSans';
+      src: url('./assets/fonts/SalesforceSans-Light.woff') format('woff');
+      font-weight: 300;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'SalesforceSans';
+      src: url('./assets/fonts/SalesforceSans-Regular.woff') format('woff');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'SalesforceSans';
+      src: url('./assets/fonts/SalesforceSans-Bold.woff') format('woff');
+      font-weight: 700;
+      font-display: swap;
+    }
+  </style>
+
+  <style>
+    /* ─── Sacred Tokens ─── */
+    :root {
+      --electric-blue-15: #001E5B;
+      --electric-blue-30: #022AC0;
+      --electric-blue-50: #066AFE;
+      --cloud-blue-68: #00B3FF;
+      --cloud-blue-80: #90D0FE;
+      --cloud-blue-95: #EAF5FE;
+      --white: #FFFFFF;
+      --black: #000B2E;
+      --gray-20: #181818;
+      --gray-40: #3E3E3C;
+      --gray-60: #706E6B;
+      --gray-80: #DDDBDA;
+      --gray-95: #F3F2F2;
+      --green: #2E844A;
+      --orange: #DD7A01;
+      --violet: #9050E9;
+      --hot-pink: #FF538A;
+      --gradient-morning: linear-gradient(180deg, #EAF5FE 0%, #FFFFFF 100%);
+      --gradient-midday: linear-gradient(180deg, #00B3FF 0%, #066AFE 100%);
+      --gradient-dusk: linear-gradient(180deg, #022AC0 0%, #001E5B 100%);
+      --gradient-evening: linear-gradient(180deg, #001E5B 0%, #000B2E 100%);
+      --space-xs: 8px; --space-sm: 16px; --space-md: 24px;
+      --space-lg: 32px; --space-xl: 48px; --space-2xl: 64px; --space-3xl: 96px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
+      --shadow-glow: 0 0 20px rgba(6,106,254,0.15);
+    }
+
+    /* ─── Reset ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'SalesforceSans', system-ui, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    /* ─── Frosted Glass ─── */
+    .glass {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+    }
+    .glass-light {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: var(--radius-md);
+    }
+    .glass-dark {
+      background: rgba(0,30,91,0.55);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(6,106,254,0.25);
+      border-radius: var(--radius-lg);
+    }
+
+    /* ─── Sparkles ─── */
+    .sparkle {
+      position: absolute;
+      pointer-events: none;
+      animation: sparkle-float 4s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes sparkle-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(8deg); }
+    }
+
+    /* ─── Screens ─── */
+    .screen { display: none; }
+    .screen.active { display: flex; }
+
+    /* ══════════════════════════════════
+       HERO SCREEN
+    ══════════════════════════════════ */
+    #screen-hero {
+      min-height: 100dvh;
+      background: var(--gradient-evening);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: var(--space-2xl) var(--space-xl);
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(6,106,254,0.18) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 760px;
+      gap: var(--space-lg);
+    }
+
+    .hero-eyebrow {
+      font-family: 'SalesforceSans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--cloud-blue-68);
+      padding: 6px 16px;
+      border: 1px solid rgba(0,179,255,0.35);
+      border-radius: 99px;
+    }
+
+    .hero-title {
+      font-family: 'AvantGarde', sans-serif;
+      font-size: clamp(38px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--white);
+    }
+    .hero-title span {
+      background: linear-gradient(90deg, var(--cloud-blue-68), var(--electric-blue-50));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--cloud-blue-80);
+      max-width: 560px;
+    }
+
+    .hero-question {
+      padding: var(--space-md) var(--space-lg);
+      border-left: 3px solid var(--electric-blue-50);
+      text-align: left;
+      font-style: italic;
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--cloud-blue-80);
+      background: rgba(6,106,254,0.08);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    .hero-astro {
+      width: 160px;
+      filter: drop-shadow(0 16px 40px rgba(6,106,254,0.35));
+      animation: astro-hover 5s ease-in-out infinite;
+    }
+    @keyframes astro-hover {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    .hero-steps {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero-step-pill {
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      background: rgba(6,106,254,0.15);
+      border: 1px solid rgba(6,106,254,0.3);
+      color: var(--cloud-blue-80);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 16px 36px;
+      background: var(--electric-blue-50);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-xl);
+      font-family: 'SalesforceSans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      box-shadow: var(--shadow-glow);
+    }
+    .btn-primary:hover {
+      background: var(--cloud-blue-68);
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px rgba(6,106,254,0.35);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* ══════════════════════════════════
+       COACH SCREEN
+    ══════════════════════════════════ */
+    #screen-coach {
+      min-height: 100dvh;
+      background: var(--gradient-evening);
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coach-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-sm) var(--space-xl);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,11,46,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .coach-header-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: 'AvantGarde', sans-serif;
+      font-size: 15px;
+      color: var(--white);
+    }
+    .coach-header-brand span {
+      color: var(--cloud-blue-68);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .progress-step {
+      width: 28px; height: 4px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.15);
+      transition: background 0.4s, width 0.4s;
+    }
+    .progress-step.done { background: var(--electric-blue-50); }
+    .progress-step.active { background: var(--cloud-blue-68); width: 40px; }
+
+    .lang-toggle {
+      display: flex;
+      gap: 4px;
+    }
+    .lang-btn {
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--electric-blue-50);
+      border-color: var(--electric-blue-50);
+      color: var(--white);
+    }
+
+    /* Main two-column layout */
+    .coach-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      flex: 1;
+      min-height: calc(100dvh - 65px);
+    }
+
+    /* ── Left: Chat ── */
+    .chat-panel {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-lg) var(--space-xl);
+      gap: var(--space-md);
+      overflow-y: auto;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .step-label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .step-badge {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--electric-blue-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-name {
+      font-family: 'AvantGarde', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--cloud-blue-68);
+    }
+
+    .messages {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .msg {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: flex-start;
+      animation: msg-in 0.3s ease forwards;
+    }
+    @keyframes msg-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg-coach .msg-bubble {
+      background: rgba(6,106,254,0.12);
+      border: 1px solid rgba(6,106,254,0.2);
+      border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 4px;
+      padding: var(--space-md);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--cloud-blue-95);
+      max-width: 500px;
+    }
+    .msg-user .msg-bubble {
+      background: rgba(0,179,255,0.1);
+      border: 1px solid rgba(0,179,255,0.2);
+      border-radius: var(--radius-md) var(--radius-md) 4px var(--radius-md);
+      padding: var(--space-md);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--white);
+      max-width: 500px;
+      margin-left: auto;
+    }
+    .msg-coach-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--gradient-dusk);
+      border: 1px solid rgba(6,106,254,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .msg-bubble strong {
+      color: var(--cloud-blue-68);
+      font-weight: 700;
+    }
+    .msg-bubble em {
+      color: var(--cloud-blue-80);
+      font-style: italic;
+    }
+
+    .challenge-block {
+      background: rgba(255,83,138,0.08);
+      border: 1px solid rgba(255,83,138,0.25);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm) var(--space-md);
+      font-size: 13px;
+      color: #ffb3cc;
+      margin-top: var(--space-sm);
+    }
+    .challenge-block::before {
+      content: "⚡ Challenge — ";
+      font-weight: 700;
+      color: var(--hot-pink);
+    }
+
+    /* Input area */
+    .chat-input-area {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .input-wrapper {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: flex-end;
+    }
+    .chat-textarea {
+      flex: 1;
+      min-height: 56px;
+      max-height: 160px;
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-md);
+      color: var(--white);
+      font-family: 'SalesforceSans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-textarea:focus {
+      border-color: var(--electric-blue-50);
+    }
+    .chat-textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+    .btn-send {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--electric-blue-50);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s, background 0.15s;
+      flex-shrink: 0;
+    }
+    .btn-send:hover { background: var(--cloud-blue-68); transform: scale(1.08); }
+    .btn-send svg { width: 20px; height: 20px; fill: var(--white); }
+
+    .hint-text {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+
+    /* ── Right: PRFAQ Canvas ── */
+    .canvas-panel {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-lg) var(--space-xl);
+      overflow-y: auto;
+      background: rgba(0,11,46,0.3);
+      gap: var(--space-md);
+    }
+
+    .canvas-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-sm);
+    }
+    .canvas-title {
+      font-family: 'AvantGarde', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--cloud-blue-68);
+    }
+    .canvas-badge {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: rgba(46,132,74,0.2);
+      border: 1px solid rgba(46,132,74,0.4);
+      color: #7be09a;
+    }
+
+    .prfaq-section {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .prfaq-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .prfaq-block {
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--electric-blue-50);
+      background: rgba(6,106,254,0.06);
+      margin-bottom: var(--space-sm);
+    }
+    .prfaq-block-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cloud-blue-68);
+      margin-bottom: 6px;
+    }
+    .prfaq-block-content {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--cloud-blue-95);
+    }
+    .prfaq-block-placeholder {
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .canvas-section-title {
+      font-family: 'AvantGarde', sans-serif;
+      font-size: 16px;
+      color: var(--white);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .canvas-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* PR section in canvas */
+    .pr-heading {
+      font-family: 'AvantGarde', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .pr-subheading {
+      font-size: 15px;
+      color: var(--cloud-blue-80);
+      font-weight: 300;
+      margin-top: 6px;
+    }
+
+    /* Export button */
+    .btn-export {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 12px 24px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      font-family: 'SalesforceSans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-export:hover {
+      background: rgba(0,179,255,0.12);
+      border-color: var(--cloud-blue-68);
+    }
+    .btn-export-slack {
+      background: rgba(74,21,75,0.25);
+      border-color: rgba(200,100,200,0.3);
+    }
+    .btn-export-slack:hover {
+      background: rgba(74,21,75,0.4);
+      border-color: rgba(200,100,200,0.6);
+    }
+
+    /* ══════════════════════════════════
+       FINAL SCREEN
+    ══════════════════════════════════ */
+    #screen-final {
+      min-height: 100dvh;
+      background: var(--gradient-dusk);
+      flex-direction: column;
+      align-items: center;
+      padding: var(--space-2xl) var(--space-xl);
+      gap: var(--space-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-content {
+      max-width: 800px;
+      width: 100%;
+      z-index: 2;
+      position: relative;
+    }
+
+    .final-title {
+      font-family: 'AvantGarde', sans-serif;
+      font-size: 36px;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+    .final-title span { color: var(--cloud-blue-68); }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .meta-card {
+      padding: var(--space-md);
+      border-radius: var(--radius-lg);
+    }
+    .meta-card-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+    }
+    .meta-card-title.green { color: var(--green); }
+    .meta-card-title.orange { color: var(--orange); }
+    .meta-card-title.hot-pink { color: var(--hot-pink); }
+    .meta-card-title.violet { color: var(--violet); }
+
+    .meta-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .meta-list li {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--cloud-blue-95);
+      padding-left: var(--space-sm);
+      border-left: 2px solid rgba(255,255,255,0.1);
+    }
+
+    .final-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .btn-restart {
+      padding: 14px 32px;
+      border-radius: var(--radius-xl);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.7);
+      font-family: 'SalesforceSans', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .btn-restart:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: var(--white);
+    }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 900px) {
+      .coach-body {
+        grid-template-columns: 1fr;
+      }
+      .canvas-panel {
+        border-top: 1px solid rgba(255,255,255,0.06);
+        border-right: none;
+        max-height: 50dvh;
+      }
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .coach-header { padding: var(--space-sm); }
+      .chat-panel, .canvas-panel { padding: var(--space-md); }
+      .hero-title { font-size: 32px; }
+      .hero-astro { width: 120px; }
+    }
+
+    /* ── Typing animation ── */
+    .typing-dots {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+      padding: 4px 0;
+    }
+    .typing-dots span {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cloud-blue-68);
+      animation: dot-bounce 1.2s ease-in-out infinite;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dot-bounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+      40% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    /* ── Scroll to bottom ── */
+    .scroll-anchor { height: 1px; }
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .sparkle, .hero-astro { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       HERO SCREEN
+  ══════════════════════════════════ -->
+  <section id="screen-hero" class="screen active">
+    <div class="hero-bg-glow"></div>
+
+    <!-- Sparkles left -->
+    <img class="sparkle" src="./assets/sparkles/Sparkles Blue Main.svg"
+         style="left:3%;top:15%;width:48px;animation-duration:4.5s;" aria-hidden="true" />
+    <img class="sparkle" src="./assets/sparkles/Sparkles Yellow Main.svg"
+         style="left:6%;top:60%;width:32px;animation-duration:5.5s;animation-delay:0.8s;" aria-hidden="true" />
+    <img class="sparkle" src="./assets/sparkles/Sparkles DarkBlue Main.svg"
+         style="left:2%;top:80%;width:64px;animation-duration:6s;animation-delay:1.2s;" aria-hidden="true" />
+
+    <!-- Sparkles right -->
+    <img class="sparkle" src="./assets/sparkles/Sparkles Yellow Main.svg"
+         style="right:4%;top:12%;width:56px;animation-duration:5s;animation-delay:0.5s;" aria-hidden="true" />
+    <img class="sparkle" src="./assets/sparkles/Sparkles Blue Main.svg"
+         style="right:3%;top:55%;width:40px;animation-duration:4s;animation-delay:1s;" aria-hidden="true" />
+    <img class="sparkle" src="./assets/sparkles/Sparkles DarkBlue Main.svg"
+         style="right:5%;top:78%;width:72px;animation-duration:6.5s;animation-delay:0.3s;" aria-hidden="true" />
+
+    <div class="hero-content">
+      <img src="./assets/characters/astro.png" alt="Astro" class="hero-astro" />
+
+      <span class="hero-eyebrow">Working Backwards · Amazon Method · Salesforce</span>
+
+      <h1 class="hero-title">
+        From Specialist<br/>to <span>Trend Setter</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        De l'expertise solution à l'influence dans la conversation.<br/>
+        <em>From solution expertise to conversation leadership.</em>
+      </p>
+
+      <blockquote class="hero-question">
+        « Qu'est-ce qui doit avoir changé dans la façon dont le client voit son problème lorsque nous quittons la pièce ? »
+      </blockquote>
+
+      <div class="hero-steps">
+        <span class="hero-step-pill">① Customer</span>
+        <span class="hero-step-pill">② Problem</span>
+        <span class="hero-step-pill">③ Alternatives</span>
+        <span class="hero-step-pill">④ Value</span>
+        <span class="hero-step-pill">⑤ Solution</span>
+        <span class="hero-step-pill">⑥ Press Release</span>
+        <span class="hero-step-pill">⑦ FAQ</span>
+      </div>
+
+      <button class="btn-primary" onclick="startCoach()">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
+        Démarrer mon PRFAQ
+      </button>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       COACH SCREEN
+  ══════════════════════════════════ -->
+  <section id="screen-coach" class="screen">
+    <!-- Header -->
+    <header class="coach-header">
+      <div class="coach-header-brand">
+        PRFAQ <span>Coach</span>
+      </div>
+      <div class="progress-bar" id="progress-bar"></div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('fr')" id="lang-fr">FR</button>
+          <button class="lang-btn" onclick="setLang('en')" id="lang-en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Body -->
+    <div class="coach-body">
+
+      <!-- Left: Chat -->
+      <div class="chat-panel" id="chat-panel">
+        <div class="step-label">
+          <div class="step-badge" id="step-badge">1</div>
+          <span class="step-name" id="step-name">Customer</span>
+        </div>
+
+        <div class="messages" id="messages"></div>
+
+        <div class="chat-input-area" style="margin-top:var(--space-xl);">
+          <div class="input-wrapper">
+            <textarea
+              class="chat-textarea"
+              id="user-input"
+              placeholder="Votre réponse… / Your answer…"
+              rows="2"
+              onkeydown="handleKey(event)"
+            ></textarea>
+            <button class="btn-send" onclick="sendMessage()" aria-label="Envoyer">
+              <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </div>
+          <p class="hint-text">Entrée + Shift pour saut de ligne · Enter to send</p>
+        </div>
+
+        <div class="scroll-anchor" id="scroll-anchor"></div>
+      </div>
+
+      <!-- Right: Canvas -->
+      <div class="canvas-panel" id="canvas-panel">
+        <div class="canvas-header">
+          <span class="canvas-title">PRFAQ Canvas</span>
+          <span class="canvas-badge" id="canvas-status">En construction…</span>
+        </div>
+
+        <!-- PR Section -->
+        <div class="prfaq-section" id="canvas-pr">
+          <div class="canvas-section-title">Press Release</div>
+
+          <div class="prfaq-block" id="canvas-heading">
+            <div class="prfaq-block-label">Heading</div>
+            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
+          </div>
+
+          <div class="prfaq-block" id="canvas-subheading">
+            <div class="prfaq-block-label">Subheading</div>
+            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
+          </div>
+
+          <div class="prfaq-block" id="canvas-problem">
+            <div class="prfaq-block-label">Problem</div>
+            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
+          </div>
+
+          <div class="prfaq-block" id="canvas-solution-canvas">
+            <div class="prfaq-block-label">Solution</div>
+            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
+          </div>
+
+          <div class="prfaq-block" id="canvas-value">
+            <div class="prfaq-block-label">Value / Differentiation</div>
+            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
+          </div>
+
+          <div class="prfaq-block" id="canvas-quote">
+            <div class="prfaq-block-label">Customer Quote</div>
+            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="prfaq-section" id="canvas-faq-section" style="margin-top:var(--space-md);">
+          <div class="canvas-section-title">FAQ</div>
+          <div id="canvas-faq-list"></div>
+        </div>
+
+        <!-- Export actions -->
+        <div style="display:flex;flex-direction:column;gap:var(--space-sm);margin-top:var(--space-md);" id="export-actions" style="display:none!important;opacity:0;pointer-events:none;">
+          <button class="btn-export" onclick="exportPDF()">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            Télécharger le PRFAQ (Markdown)
+          </button>
+          <button class="btn-export btn-export-slack" onclick="exportSlack()">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.122 2.521a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.268 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zm-2.523 10.122a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.268a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
+            Exporter vers Slack Canvas
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       FINAL SCREEN
+  ══════════════════════════════════ -->
+  <section id="screen-final" class="screen">
+    <!-- Sparkles -->
+    <img class="sparkle" src="./assets/sparkles/Sparkles Yellow Main.svg"
+         style="left:2%;top:20%;width:56px;" aria-hidden="true" />
+    <img class="sparkle" src="./assets/sparkles/Sparkles Blue Main.svg"
+         style="left:5%;top:70%;width:40px;animation-delay:1s;" aria-hidden="true" />
+    <img class="sparkle" src="./assets/sparkles/Sparkles Yellow Main.svg"
+         style="right:3%;top:15%;width:48px;animation-delay:0.5s;" aria-hidden="true" />
+    <img class="sparkle" src="./assets/sparkles/Sparkles Blue Main.svg"
+         style="right:4%;top:65%;width:64px;animation-delay:1.2s;" aria-hidden="true" />
+
+    <div class="final-content">
+      <h2 class="final-title">Votre PRFAQ est <span>prêt</span> ✦</h2>
+
+      <div id="final-prfaq-preview" class="glass-dark" style="padding:var(--space-xl);margin-bottom:var(--space-xl);border-radius:var(--radius-xl);">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="meta-grid" id="meta-grid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="final-actions">
+        <button class="btn-primary" onclick="exportSlack()" style="width:100%;justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.122 2.521a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.268 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zm-2.523 10.122a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.268a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
+          Exporter vers Slack Canvas
+        </button>
+        <button class="btn-restart" onclick="restartCoach()">↩ Nouveau PRFAQ</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  // ─────────────────────────────────────────
+  //  STATE
+  // ─────────────────────────────────────────
+  let lang = 'fr';
+  let currentStep = 0;
+  let subStep = 0;
+  let answers = {};
+  let challengePending = false;
+  let waitingForChallenge = false;
+
+  const STEPS = [
+    { id: 'customer',     num: 1 },
+    { id: 'problem',      num: 2 },
+    { id: 'alternatives', num: 3 },
+    { id: 'value',        num: 4 },
+    { id: 'solution',     num: 5 },
+    { id: 'pr',           num: 6 },
+    { id: 'faq',          num: 7 },
+  ];
+
+  // ─────────────────────────────────────────
+  //  SCRIPT — Bilingue FR/EN
+  // ─────────────────────────────────────────
+  const SCRIPT = {
+    customer: {
+      fr: [
+        {
+          type: 'coach',
+          text: `Bienvenue. Je suis votre coach PRFAQ.\n\nNous allons construire ensemble votre <strong>Press Release + FAQ</strong> selon la méthode <em>Working Backwards</em> d'Amazon.\n\nRègle fondamentale : <strong>Customer backwards, not skills forward.</strong>\n\nOn ne part pas de ce que Salesforce sait faire. On part du client.\n\nPremière question : <strong>Qui est précisément le client concerné ?</strong>\n\nPas "les entreprises" ou "les grandes boîtes". Une personne, un rôle, une situation concrète.`,
+          challengeIf: (a) => a.length < 20 || /entreprise|client|société|company|business/i.test(a) && !/directeur|responsable|manager|vp|director|head|chef|coo|cfo|cmo|ceo|role|poste|titre/i.test(a),
+          challenge: `Peux-tu préciser quel rôle dans l'entreprise, et dans quel contexte ? "Les entreprises" n'est pas un client — c'est un marché.`,
+          enChallenge: `Can you specify the role within the company, and in what context? "Businesses" is not a customer — it's a market.`,
+          key: 'customer_who'
+        },
+        {
+          type: 'coach',
+          text: `Bien. Maintenant, une précision importante :\n\n<strong>Qui n'est PAS le client de cette initiative ?</strong>\n\nDélimiter ce que vous ne ciblez pas est aussi important que de définir ce que vous ciblez.`,
+          key: 'customer_not'
+        }
+      ],
+      en: [
+        {
+          type: 'coach',
+          text: `Welcome. I'm your PRFAQ coach.\n\nTogether we'll build your <strong>Press Release + FAQ</strong> using Amazon's <em>Working Backwards</em> method.\n\nFundamental rule: <strong>Customer backwards, not skills forward.</strong>\n\nWe don't start from what Salesforce can do. We start from the customer.\n\nFirst question: <strong>Who exactly is the target customer?</strong>\n\nNot "companies" or "big businesses". A person, a role, a concrete situation.`,
+          challengeIf: (a) => a.length < 20 || /enterprise|customer|company|business/i.test(a) && !/director|manager|vp|head|ceo|coo|cfo|cmo|role|title|position/i.test(a),
+          challenge: `Peux-tu préciser quel rôle dans l'entreprise, et dans quel contexte ?`,
+          enChallenge: `Can you specify the role within the company, and in what context? "Companies" is not a customer — it's a market.`,
+          key: 'customer_who'
+        },
+        {
+          type: 'coach',
+          text: `Good. Now, an important clarification:\n\n<strong>Who is NOT the customer of this initiative?</strong>\n\nDefining what you're not targeting is just as important as defining what you are.`,
+          key: 'customer_not'
+        }
+      ]
+    },
+    problem: {
+      fr: [
+        {
+          type: 'coach',
+          text: `Passons au problème.\n\n<strong>Que cherche ce client à accomplir — du point de vue de son rôle et de ses responsabilités ?</strong>\n\nPas ce que Salesforce peut lui apporter. Ce qu'il essaie lui-même de faire, ou d'éviter.`,
+          challengeIf: (a) => /besoin de|a besoin|needs|need to/i.test(a),
+          challenge: `Tu as formulé ça du point de vue de la solution. Reformule du point de vue du client : qu'est-ce qu'il essaie d'accomplir, dans son propre langage ?`,
+          enChallenge: `You framed this from the solution's perspective. Reframe from the customer's perspective: what are they trying to accomplish, in their own words?`,
+          key: 'problem_goal'
+        },
+        {
+          type: 'coach',
+          text: `Et concrètement : <strong>qu'est-ce qui l'empêche d'y arriver aujourd'hui ?</strong>\n\nQuelle est la friction réelle ? Quel est le coût de cette situation pour lui ?`,
+          challengeIf: (a) => a.length < 30,
+          challenge: `C'est encore un peu vague. Peux-tu décrire une situation concrète où ce problème a eu une conséquence mesurable ?`,
+          enChallenge: `That's still a bit vague. Can you describe a concrete situation where this problem had a measurable consequence?`,
+          key: 'problem_friction'
+        }
+      ],
+      en: [
+        {
+          type: 'coach',
+          text: `Let's move to the problem.\n\n<strong>What is this customer trying to accomplish — from their role and responsibilities perspective?</strong>\n\nNot what Salesforce can bring them. What they're trying to do themselves, or avoid.`,
+          challengeIf: (a) => /needs to|need to|requires/i.test(a),
+          challenge: `You framed this from the solution's perspective. Reframe from the customer's perspective.`,
+          enChallenge: `You framed this from the solution's perspective. Reframe from the customer's perspective: what are they trying to accomplish, in their own words?`,
+          key: 'problem_goal'
+        },
+        {
+          type: 'coach',
+          text: `And concretely: <strong>what is preventing them from getting there today?</strong>\n\nWhat is the real friction? What does this situation cost them?`,
+          challengeIf: (a) => a.length < 30,
+          challenge: `C'est encore un peu vague. Describe a concrete situation.`,
+          enChallenge: `That's still a bit vague. Can you describe a concrete situation where this problem had a measurable consequence?`,
+          key: 'problem_friction'
+        }
+      ]
+    },
+    alternatives: {
+      fr: [
+        {
+          type: 'coach',
+          text: `Ne jamais supposer que le client part de zéro.\n\n<strong>Que fait-il aujourd'hui pour résoudre ce problème ?</strong>\n\nDonnez-moi les solutions actuelles : outils, processus manuels, concurrents, contournements.`,
+          challengeIf: (a) => /rien|nothing|no solution|pas de solution/i.test(a),
+          challenge: `Tout client a une façon de gérer le problème aujourd'hui — même imparfaite. Excel, emails, processus manuels, une autre solution ? Cherche encore.`,
+          enChallenge: `Every customer has some way of handling the problem today — even imperfectly. Excel, emails, manual processes, another solution? Look harder.`,
+          key: 'alternatives'
+        },
+        {
+          type: 'coach',
+          text: `<strong>Pourquoi ces alternatives ne suffisent-elles pas ?</strong>\n\nQu'est-ce qui manque, coûte trop cher, prend trop de temps, ou crée de nouveaux problèmes ?`,
+          key: 'alternatives_why_not'
+        }
+      ],
+      en: [
+        {
+          type: 'coach',
+          text: `Never assume the customer starts from scratch.\n\n<strong>What do they do today to solve this problem?</strong>\n\nGive me the current solutions: tools, manual processes, competitors, workarounds.`,
+          challengeIf: (a) => /nothing|no solution|none/i.test(a),
+          challenge: `Every customer has some way of handling the problem today.`,
+          enChallenge: `Every customer has some way of handling the problem today — even imperfectly. Excel, emails, manual processes, another solution? Look harder.`,
+          key: 'alternatives'
+        },
+        {
+          type: 'coach',
+          text: `<strong>Why aren't these alternatives enough?</strong>\n\nWhat's missing, too expensive, too slow, or creating new problems?`,
+          key: 'alternatives_why_not'
+        }
+      ]
+    },
+    value: {
+      fr: [
+        {
+          type: 'coach',
+          text: `Projetons-nous dans le futur.\n\n<strong>Imaginons que vous ayez réussi.</strong>\n\nQu'est-ce qui est concrètement différent pour le client ? Qu'a-t-il gagné ? Qu'a-t-il cessé de faire ? Quelle décision peut-il désormais prendre qu'il ne pouvait pas avant ?`,
+          challengeIf: (a) => /efficace|efficient|rapide|faster|simple|easy|better/i.test(a) && a.length < 60,
+          challenge: `"Plus efficace" ou "plus rapide" ne dit rien. Qu'est-ce qui change concrètement dans son quotidien, ses décisions, ses résultats mesurables ?`,
+          enChallenge: `"More efficient" or "faster" says nothing specific. What concretely changes in their daily work, decisions, or measurable results?`,
+          key: 'value'
+        },
+        {
+          type: 'coach',
+          text: `<strong>Comment le client saurait-il que la solution fonctionne ?</strong>\n\nQuel indicateur, quel signal, quelle preuve observable lui dirait que quelque chose a réellement changé ?`,
+          key: 'value_proof'
+        }
+      ],
+      en: [
+        {
+          type: 'coach',
+          text: `Let's project forward.\n\n<strong>Imagine you succeeded.</strong>\n\nWhat is concretely different for the customer? What have they gained? What have they stopped doing? What decision can they now make that they couldn't before?`,
+          challengeIf: (a) => /efficient|faster|simple|easy|better/i.test(a) && a.length < 60,
+          challenge: `"More efficient" says nothing specific. What concretely changes in their daily work?`,
+          enChallenge: `"More efficient" or "faster" says nothing specific. What concretely changes in their daily work, decisions, or measurable results?`,
+          key: 'value'
+        },
+        {
+          type: 'coach',
+          text: `<strong>How would the customer know the solution works?</strong>\n\nWhat indicator, signal, or observable proof would tell them something has genuinely changed?`,
+          key: 'value_proof'
+        }
+      ]
+    },
+    solution: {
+      fr: [
+        {
+          type: 'coach',
+          text: `Maintenant seulement, parlons de la solution.\n\n<strong>Que faudrait-il que la solution fasse</strong> pour répondre directement au problème que vous venez de décrire ?\n\nPas une liste de fonctionnalités. Les capacités essentielles qui adressent directement la friction identifiée.`,
+          challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm|service cloud|marketing cloud/i.test(a) && a.length < 60,
+          challenge: `Tu m'as donné un nom de produit. Dis-moi ce que cette solution fait concrètement pour résoudre le problème de ce client spécifique — pas ce qu'elle est.`,
+          enChallenge: `You gave me a product name. Tell me what this solution actually does to solve this specific customer's problem — not what it is.`,
+          key: 'solution'
+        },
+        {
+          type: 'coach',
+          text: `<strong>En quoi cette approche est-elle significativement meilleure que ce que le client fait aujourd'hui ?</strong>\n\nPas marginalement mieux — substantiellement différent. Pourquoi changerait-il ?`,
+          key: 'solution_diff'
+        }
+      ],
+      en: [
+        {
+          type: 'coach',
+          text: `Only now, let's talk about the solution.\n\n<strong>What would the solution need to do</strong> to directly address the problem you just described?\n\nNot a feature list. The essential capabilities that directly address the identified friction.`,
+          challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm/i.test(a) && a.length < 60,
+          challenge: `You gave me a product name. Tell me what it actually does to solve this customer's problem.`,
+          enChallenge: `You gave me a product name. Tell me what this solution actually does to solve this specific customer's problem — not what it is.`,
+          key: 'solution'
+        },
+        {
+          type: 'coach',
+          text: `<strong>How is this approach significantly better than what the customer does today?</strong>\n\nNot marginally better — substantially different. Why would they change?`,
+          key: 'solution_diff'
+        }
+      ]
+    },
+    pr: {
+      fr: [
+        {
+          type: 'coach',
+          text: `Excellent travail. On a maintenant les fondations.\n\nPassons à la rédaction du <strong>Press Release</strong>.\n\n<strong>Heading</strong> : en une ligne, quel est le produit ou service ?\n\nRègle : doit pouvoir être compris sans connaître Salesforce ni le jargon interne.`,
+          key: 'pr_heading'
+        },
+        {
+          type: 'coach',
+          text: `<strong>Subheading</strong> : pour quel client précis, quel est le bénéfice principal ?\n\nFormat : "Pour [qui], [bénéfice] grâce à [quoi]"`,
+          key: 'pr_subheading'
+        },
+        {
+          type: 'coach',
+          text: `<strong>Customer Quote</strong> : que dirait le client si la solution avait réellement créé cette valeur ?\n\nÉcrivez à la première personne. Pas de jargon. Ce qu'il ressentirait, ce qu'il aurait accompli.`,
+          challengeIf: (a) => /salesforce|outil|solution|fonctionnalité|feature|tool/i.test(a),
+          challenge: `La citation parle encore d'outils et de technologie. Réécris-la du point de vue du client : ce qu'il a accompli, pas ce qu'il a utilisé.`,
+          enChallenge: `The quote still talks about tools and technology. Rewrite it from the customer's perspective: what they accomplished, not what they used.`,
+          key: 'pr_quote'
+        }
+      ],
+      en: [
+        {
+          type: 'coach',
+          text: `Excellent work. We now have the foundations.\n\nLet's write the <strong>Press Release</strong>.\n\n<strong>Heading</strong>: in one line, what is the product or service?\n\nRule: must be understandable without knowing Salesforce or internal jargon.`,
+          key: 'pr_heading'
+        },
+        {
+          type: 'coach',
+          text: `<strong>Subheading</strong>: for which specific customer, what is the main benefit?\n\nFormat: "For [who], [benefit] through [what]"`,
+          key: 'pr_subheading'
+        },
+        {
+          type: 'coach',
+          text: `<strong>Customer Quote</strong>: what would the customer say if the solution had genuinely created that value?\n\nWrite in first person. No jargon. What they'd feel, what they'd have accomplished.`,
+          challengeIf: (a) => /salesforce|tool|solution|feature|platform/i.test(a),
+          challenge: `La citation parle encore d'outils. Réécris du point de vue du client.`,
+          enChallenge: `The quote still talks about tools and technology. Rewrite from the customer's perspective: what they accomplished, not what they used.`,
+          key: 'pr_quote'
+        }
+      ]
+    },
+    faq: {
+      fr: [
+        {
+          type: 'coach',
+          text: `Dernière étape — la <strong>FAQ</strong>.\n\nUne bonne FAQ doit révéler les questions difficiles, pas simplement rassurer.\n\n<strong>Quelle est la principale raison pour laquelle cette idée pourrait échouer ?</strong>\n\nSoyez honnête. C'est le plus important.`,
+          key: 'faq_risk'
+        },
+        {
+          type: 'coach',
+          text: `<strong>Quelles hypothèses devez-vous encore valider avant de savoir si cette idée vaut vraiment la peine d'être poursuivie ?</strong>`,
+          key: 'faq_assumptions'
+        },
+        {
+          type: 'coach',
+          text: `Pour finir : <strong>quelle est la prochaine conversation ou action concrète</strong> qui vous permettrait de valider l'hypothèse la plus importante ?\n\nUne action que vous pouvez faire dès la semaine prochaine.`,
+          key: 'faq_next'
+        }
+      ],
+      en: [
+        {
+          type: 'coach',
+          text: `Last step — the <strong>FAQ</strong>.\n\nA good FAQ should surface the hard questions, not just reassure.\n\n<strong>What is the main reason this idea could fail?</strong>\n\nBe honest. This is the most important one.`,
+          key: 'faq_risk'
+        },
+        {
+          type: 'coach',
+          text: `<strong>What assumptions do you still need to validate before knowing if this idea is truly worth pursuing?</strong>`,
+          key: 'faq_assumptions'
+        },
+        {
+          type: 'coach',
+          text: `Finally: <strong>what is the next concrete conversation or action</strong> that would let you validate the most important assumption?\n\nSomething you can do next week.`,
+          key: 'faq_next'
+        }
+      ]
+    }
+  };
+
+  // ─────────────────────────────────────────
+  //  INIT
+  // ─────────────────────────────────────────
+  function startCoach() {
+    document.getElementById('screen-hero').classList.remove('active');
+    document.getElementById('screen-coach').classList.add('active');
+    buildProgressBar();
+    showCoachMessage();
+  }
+
+  function buildProgressBar() {
+    const bar = document.getElementById('progress-bar');
+    bar.innerHTML = STEPS.map((s, i) =>
+      `<div class="progress-step" id="prog-${i}" title="${s.id}"></div>`
+    ).join('');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    STEPS.forEach((_, i) => {
+      const el = document.getElementById(`prog-${i}`);
+      if (!el) return;
+      el.classList.remove('done', 'active');
+      if (i < currentStep) el.classList.add('done');
+      else if (i === currentStep) el.classList.add('active');
+    });
+    const badge = document.getElementById('step-badge');
+    const name = document.getElementById('step-name');
+    if (badge) badge.textContent = STEPS[currentStep]?.num || '';
+    if (name) name.textContent = STEPS[currentStep]?.id?.toUpperCase() || '';
+  }
+
+  // ─────────────────────────────────────────
+  //  MESSAGING
+  // ─────────────────────────────────────────
+  function showCoachMessage() {
+    const stepId = STEPS[currentStep]?.id;
+    if (!stepId) { showFinalScreen(); return; }
+
+    const stepScript = SCRIPT[stepId]?.[lang];
+    if (!stepScript || subStep >= stepScript.length) {
+      advanceStep();
+      return;
+    }
+
+    const msg = stepScript[subStep];
+    showTyping(() => {
+      appendMessage('coach', msg.text);
+    });
+  }
+
+  function showTyping(callback) {
+    const msgs = document.getElementById('messages');
+    const typing = document.createElement('div');
+    typing.className = 'msg msg-coach';
+    typing.id = 'typing-indicator';
+    typing.innerHTML = `
+      <div class="msg-coach-avatar">🤖</div>
+      <div class="msg-bubble">
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+      </div>`;
+    msgs.appendChild(typing);
+    scrollToBottom();
+    setTimeout(() => {
+      typing.remove();
+      callback();
+    }, 900);
+  }
+
+  function appendMessage(role, text) {
+    const msgs = document.getElementById('messages');
+    const div = document.createElement('div');
+    div.className = `msg msg-${role}`;
+
+    if (role === 'coach') {
+      div.innerHTML = `
+        <div class="msg-coach-avatar">🤖</div>
+        <div class="msg-bubble">${text.replace(/\n/g, '<br/>')}</div>`;
+    } else {
+      div.innerHTML = `<div class="msg-bubble">${text.replace(/\n/g, '<br/>')}</div>`;
+    }
+
+    msgs.appendChild(div);
+    scrollToBottom();
+  }
+
+  function appendChallenge(text) {
+    const msgs = document.getElementById('messages');
+    const div = document.createElement('div');
+    div.className = 'challenge-block';
+    div.style.animation = 'msg-in 0.3s ease forwards';
+    div.textContent = text;
+    msgs.appendChild(div);
+    scrollToBottom();
+  }
+
+  function scrollToBottom() {
+    const panel = document.getElementById('chat-panel');
+    setTimeout(() => panel.scrollTop = panel.scrollHeight, 50);
+  }
+
+  // ─────────────────────────────────────────
+  //  USER INPUT
+  // ─────────────────────────────────────────
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('user-input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    appendMessage('user', text);
+
+    const stepId = STEPS[currentStep]?.id;
+    const stepScript = SCRIPT[stepId]?.[lang];
+    const msg = stepScript?.[subStep];
+
+    if (!msg) return;
+
+    // Save answer
+    answers[msg.key] = text;
+
+    // Challenge logic
+    if (!waitingForChallenge && msg.challengeIf && msg.challengeIf(text)) {
+      const challengeText = lang === 'en' ? msg.enChallenge : msg.challenge;
+      setTimeout(() => appendChallenge(challengeText), 400);
+      waitingForChallenge = true;
+      return;
+    }
+
+    waitingForChallenge = false;
+
+    // Update canvas
+    updateCanvas(msg.key, text);
+
+    // Next sub-step
+    subStep++;
+    if (!stepScript || subStep >= stepScript.length) {
+      advanceStep();
+    } else {
+      setTimeout(() => showCoachMessage(), 500);
+    }
+  }
+
+  function advanceStep() {
+    currentStep++;
+    subStep = 0;
+    waitingForChallenge = false;
+    updateProgress();
+
+    if (currentStep >= STEPS.length) {
+      setTimeout(() => showFinalScreen(), 600);
+      return;
+    }
+
+    // Separator
+    const msgs = document.getElementById('messages');
+    const sep = document.createElement('div');
+    sep.style.cssText = 'height:1px;background:rgba(255,255,255,0.06);margin:16px 0;';
+    msgs.appendChild(sep);
+
+    setTimeout(() => showCoachMessage(), 400);
+  }
+
+  // ─────────────────────────────────────────
+  //  CANVAS UPDATES
+  // ─────────────────────────────────────────
+  function updateCanvas(key, value) {
+    const map = {
+      customer_who: { id: 'canvas-heading', label: 'Heading' },
+      problem_goal: { id: 'canvas-problem', label: 'Problem' },
+      value: { id: 'canvas-value', label: 'Value / Differentiation' },
+      solution: { id: 'canvas-solution-canvas', label: 'Solution' },
+      pr_heading: { id: 'canvas-heading', label: 'Heading', isPR: true },
+      pr_subheading: { id: 'canvas-subheading', label: 'Subheading', isPR: true },
+      pr_quote: { id: 'canvas-quote', label: 'Customer Quote', isPR: true },
+    };
+
+    if (map[key]) {
+      const block = document.getElementById(map[key].id);
+      if (block) {
+        const content = block.querySelector('.prfaq-block-content');
+        if (content) {
+          content.innerHTML = `<span style="color:var(--white)">${value}</span>`;
+          block.style.borderLeftColor = 'var(--green)';
+          const section = document.getElementById('canvas-pr');
+          if (section) section.classList.add('visible');
+        }
+      }
+    }
+
+    // FAQ entries
+    if (key === 'faq_risk' || key === 'faq_assumptions' || key === 'faq_next') {
+      const labels = {
+        faq_risk: lang === 'fr' ? '⚠ Biggest Risk' : '⚠ Biggest Risk',
+        faq_assumptions: lang === 'fr' ? '? Hypothèses à valider' : '? Assumptions to validate',
+        faq_next: lang === 'fr' ? '→ Prochaine action' : '→ Next action'
+      };
+      const faqList = document.getElementById('canvas-faq-list');
+      const item = document.createElement('div');
+      item.className = 'prfaq-block';
+      item.innerHTML = `
+        <div class="prfaq-block-label">${labels[key]}</div>
+        <div class="prfaq-block-content"><span style="color:var(--white)">${value}</span></div>`;
+      item.style.animation = 'msg-in 0.4s ease forwards';
+      faqList?.appendChild(item);
+
+      const faqSection = document.getElementById('canvas-faq-section');
+      if (faqSection) faqSection.classList.add('visible');
+    }
+
+    // Show export when we have enough
+    const keys = Object.keys(answers);
+    if (keys.length >= 4) {
+      const exportEl = document.getElementById('export-actions');
+      if (exportEl) {
+        exportEl.style.opacity = '1';
+        exportEl.style.pointerEvents = 'auto';
+        exportEl.style.display = 'flex';
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────
+  //  FINAL SCREEN
+  // ─────────────────────────────────────────
+  function showFinalScreen() {
+    document.getElementById('screen-coach').classList.remove('active');
+    document.getElementById('screen-final').classList.add('active');
+
+    // Build PR preview
+    const preview = document.getElementById('final-prfaq-preview');
+    preview.innerHTML = `
+      <div style="margin-bottom:var(--space-md);">
+        <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--cloud-blue-68);margin-bottom:8px;">PRESS RELEASE</p>
+        <div class="pr-heading">${answers.pr_heading || answers.customer_who || '—'}</div>
+        <div class="pr-subheading">${answers.pr_subheading || answers.problem_goal || '—'}</div>
+      </div>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:var(--space-md) 0;">
+      <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
+        ${answers.problem_friction ? `<p style="font-size:13px;line-height:1.65;color:var(--cloud-blue-95)"><strong style="color:var(--cloud-blue-68)">Problem:</strong> ${answers.problem_friction}</p>` : ''}
+        ${answers.solution ? `<p style="font-size:13px;line-height:1.65;color:var(--cloud-blue-95)"><strong style="color:var(--cloud-blue-68)">Solution:</strong> ${answers.solution}</p>` : ''}
+        ${answers.value ? `<p style="font-size:13px;line-height:1.65;color:var(--cloud-blue-95)"><strong style="color:var(--cloud-blue-68)">Value:</strong> ${answers.value}</p>` : ''}
+        ${answers.pr_quote ? `<blockquote style="border-left:3px solid var(--electric-blue-50);padding-left:var(--space-md);font-style:italic;color:var(--cloud-blue-80);font-size:14px;">"${answers.pr_quote}"</blockquote>` : ''}
+      </div>`;
+
+    // Meta grid
+    const grid = document.getElementById('meta-grid');
+    grid.innerHTML = `
+      <div class="meta-card glass-dark">
+        <div class="meta-card-title green">✓ What we know</div>
+        <ul class="meta-list">
+          ${answers.customer_who ? `<li>Client : ${answers.customer_who.substring(0,80)}…</li>` : ''}
+          ${answers.problem_goal ? `<li>Problème : ${answers.problem_goal.substring(0,80)}…</li>` : ''}
+          ${answers.alternatives ? `<li>Alternatives actuelles identifiées</li>` : ''}
+        </ul>
+      </div>
+      <div class="meta-card glass-dark">
+        <div class="meta-card-title orange">~ What we assume</div>
+        <ul class="meta-list">
+          ${answers.faq_assumptions ? answers.faq_assumptions.split('.').filter(s=>s.trim()).map(s=>`<li>${s.trim()}</li>`).join('') : '<li>—</li>'}
+        </ul>
+      </div>
+      <div class="meta-card glass-dark">
+        <div class="meta-card-title hot-pink">⚡ Biggest risk</div>
+        <ul class="meta-list">
+          ${answers.faq_risk ? `<li>${answers.faq_risk.substring(0,120)}</li>` : '<li>—</li>'}
+        </ul>
+      </div>
+      <div class="meta-card glass-dark">
+        <div class="meta-card-title violet">→ Next conversation</div>
+        <ul class="meta-list">
+          ${answers.faq_next ? `<li>${answers.faq_next.substring(0,120)}</li>` : '<li>—</li>'}
+        </ul>
+      </div>`;
+  }
+
+  // ─────────────────────────────────────────
+  //  EXPORT
+  // ─────────────────────────────────────────
+  function buildMarkdown() {
+    return `# PRFAQ — ${answers.pr_heading || answers.customer_who || 'Draft'}
+
+## Press Release
+
+**Heading:** ${answers.pr_heading || '—'}
+
+**Subheading:** ${answers.pr_subheading || '—'}
+
+**Problem:** ${answers.problem_goal || '—'}
+
+${answers.problem_friction ? `*Friction:* ${answers.problem_friction}` : ''}
+
+**Alternatives actuelles:** ${answers.alternatives || '—'}
+
+**Solution:** ${answers.solution || '—'}
+
+**Différenciation:** ${answers.solution_diff || '—'}
+
+**Value:** ${answers.value || '—'}
+
+> "${answers.pr_quote || '—'}"
+
+---
+
+## FAQ
+
+**Biggest risk:** ${answers.faq_risk || '—'}
+
+**Hypothèses à valider:** ${answers.faq_assumptions || '—'}
+
+**Prochaine action:** ${answers.faq_next || '—'}
+
+---
+
+*Généré avec PRFAQ Coach — From Specialist to Trend Setter*
+`;
+  }
+
+  function exportPDF() {
+    const md = buildMarkdown();
+    const blob = new Blob([md], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `PRFAQ-${Date.now()}.md`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function exportSlack() {
+    const md = buildMarkdown();
+    const encoded = encodeURIComponent(md);
+    // Copy to clipboard as fallback
+    navigator.clipboard.writeText(md).then(() => {
+      alert('✓ PRFAQ copié dans le presse-papier.\n\nCollez-le dans un Canvas Slack pour le partager avec votre équipe.\n\n(Ctrl+Shift+P dans Slack > Nouveau Canvas)');
+    }).catch(() => {
+      prompt('Copiez ce PRFAQ et collez-le dans un Canvas Slack :', md);
+    });
+  }
+
+  // ─────────────────────────────────────────
+  //  LANG
+  // ─────────────────────────────────────────
+  function setLang(l) {
+    lang = l;
+    document.getElementById('lang-fr').classList.toggle('active', l === 'fr');
+    document.getElementById('lang-en').classList.toggle('active', l === 'en');
+  }
+
+  // ─────────────────────────────────────────
+  //  RESTART
+  // ─────────────────────────────────────────
+  function restartCoach() {
+    currentStep = 0; subStep = 0;
+    answers = {}; waitingForChallenge = false;
+    document.getElementById('messages').innerHTML = '';
+    document.getElementById('canvas-faq-list').innerHTML = '';
+    // Reset canvas blocks
+    ['canvas-heading','canvas-subheading','canvas-problem','canvas-solution-canvas','canvas-value','canvas-quote'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        const c = el.querySelector('.prfaq-block-content');
+        if (c) c.innerHTML = '<span class="prfaq-block-placeholder">En attente…</span>';
+        el.style.borderLeftColor = '';
+      }
+    });
+    document.getElementById('screen-final').classList.remove('active');
+    document.getElementById('screen-coach').classList.add('active');
+    updateProgress();
+    showCoachMessage();
+  }
+  </script>
+</body>
+</html>
