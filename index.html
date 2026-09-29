@@ -206,21 +206,111 @@
       50% { transform: translateY(-14px); }
     }
 
+    /* ── Step flip cards ── */
     .hero-steps {
       display: flex;
-      gap: var(--space-md);
-      flex-wrap: wrap;
+      gap: 10px;
       justify-content: center;
+      flex-wrap: nowrap;
+      width: 100%;
+      max-width: 900px;
     }
-    .hero-step-pill {
-      padding: 6px 14px;
+    .step-card {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 52px;
+      perspective: 800px;
+      cursor: pointer;
+    }
+    .step-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    .step-card.flipped .step-card-inner {
+      transform: rotateY(180deg);
+    }
+    .step-card-front,
+    .step-card-back {
+      position: absolute;
+      inset: 0;
       border-radius: 99px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .step-card-front {
+      padding: 0 12px;
       background: rgba(6,106,254,0.15);
-      border: 1px solid rgba(6,106,254,0.3);
+      border: 1px solid rgba(6,106,254,0.35);
       color: var(--cloud-blue-80);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+      gap: 5px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .step-card:hover .step-card-front {
+      background: rgba(6,106,254,0.32);
+      border-color: var(--electric-blue-50);
+      color: var(--white);
+      box-shadow: 0 0 14px rgba(6,106,254,0.3);
+    }
+    .step-card.flipped .step-card-front {
+      background: rgba(6,106,254,0.42);
+      border-color: var(--cloud-blue-68);
+      color: var(--white);
+    }
+    .step-num {
+      font-size: 14px;
+      opacity: 0.75;
+    }
+    .step-card-back {
+      background: linear-gradient(135deg, rgba(0,179,255,0.18) 0%, rgba(2,42,192,0.55) 100%);
+      border: 1px solid rgba(0,179,255,0.45);
+      border-radius: 16px;
+      transform: rotateY(180deg);
+      padding: 10px 12px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 3px;
+    }
+    .step-back-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--cloud-blue-68);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .step-back-text {
+      font-size: 9.5px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.4;
+    }
+    @media (max-width: 860px) {
+      .hero-steps {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .step-card {
+        flex: 0 0 calc(50% - 4px);
+        height: 48px;
+      }
+    }
+    @media (max-width: 480px) {
+      .step-card {
+        flex: 0 0 100%;
+        height: 48px;
+      }
     }
 
     .btn-primary {
@@ -807,13 +897,77 @@
       </blockquote>
 
       <div class="hero-steps">
-        <span class="hero-step-pill">① Customer</span>
-        <span class="hero-step-pill">② Problem</span>
-        <span class="hero-step-pill">③ Alternatives</span>
-        <span class="hero-step-pill">④ Value</span>
-        <span class="hero-step-pill">⑤ Solution</span>
-        <span class="hero-step-pill">⑥ Press Release</span>
-        <span class="hero-step-pill">⑦ FAQ</span>
+
+        <div class="step-card" onclick="this.classList.toggle('flipped')">
+          <div class="step-card-inner">
+            <div class="step-card-front"><span class="step-num">①</span> Customer</div>
+            <div class="step-card-back">
+              <span class="step-back-title">① Customer</span>
+              <span class="step-back-text">Qui est précisément le client visé ? Son rôle, son contexte, sa situation concrète — pas un segment, une personne réelle.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card" onclick="this.classList.toggle('flipped')">
+          <div class="step-card-inner">
+            <div class="step-card-front"><span class="step-num">②</span> Problem</div>
+            <div class="step-card-back">
+              <span class="step-back-title">② Problem</span>
+              <span class="step-back-text">Qu'essaie-t-il d'accomplir ? Quelle friction l'empêche d'y arriver aujourd'hui ? Quel est le coût réel de ce blocage ?</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card" onclick="this.classList.toggle('flipped')">
+          <div class="step-card-inner">
+            <div class="step-card-front"><span class="step-num">③</span> Alternatives</div>
+            <div class="step-card-back">
+              <span class="step-back-title">③ Alternatives</span>
+              <span class="step-back-text">Comment résout-il ce problème aujourd'hui ? Outils, processus manuels, contournements — et pourquoi ces solutions restent insuffisantes.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card" onclick="this.classList.toggle('flipped')">
+          <div class="step-card-inner">
+            <div class="step-card-front"><span class="step-num">④</span> Value</div>
+            <div class="step-card-back">
+              <span class="step-back-title">④ Value</span>
+              <span class="step-back-text">Si on réussit, qu'est-ce qui change concrètement pour lui ? Quel indicateur lui permettrait de le constater ?</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card" onclick="this.classList.toggle('flipped')">
+          <div class="step-card-inner">
+            <div class="step-card-front"><span class="step-num">⑤</span> Solution</div>
+            <div class="step-card-back">
+              <span class="step-back-title">⑤ Solution</span>
+              <span class="step-back-text">Ce que la solution doit faire — pas ce qu'elle est. Les capacités essentielles qui s'attaquent directement à la friction identifiée.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card" onclick="this.classList.toggle('flipped')">
+          <div class="step-card-inner">
+            <div class="step-card-front"><span class="step-num">⑥</span> Press Release</div>
+            <div class="step-card-back">
+              <span class="step-back-title">⑥ Press Release</span>
+              <span class="step-back-text">Le communiqué fictif du jour du lancement : titre, sous-titre, citation client. Rédigé comme si c'était déjà sorti.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card" onclick="this.classList.toggle('flipped')">
+          <div class="step-card-inner">
+            <div class="step-card-front"><span class="step-num">⑦</span> FAQ</div>
+            <div class="step-card-back">
+              <span class="step-back-title">⑦ FAQ</span>
+              <span class="step-back-text">Les vraies questions difficiles : risques, hypothèses non validées, prochaine action concrète pour tester l'idée.</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <button class="btn-primary" onclick="startCoach()">
