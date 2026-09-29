@@ -922,10 +922,6 @@
 
         <!-- Export actions -->
         <div style="display:flex;flex-direction:column;gap:var(--space-sm);margin-top:var(--space-md);" id="export-actions" style="display:none!important;opacity:0;pointer-events:none;">
-          <button class="btn-export" onclick="exportPDF()">
-            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-            Télécharger le PRFAQ (Markdown)
-          </button>
           <button class="btn-export btn-export-slack" onclick="exportSlack()">
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.122 2.521a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.268 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zm-2.523 10.122a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.268a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
             Exporter vers Slack Canvas
@@ -999,9 +995,9 @@
       fr: [
         {
           type: 'coach',
-          text: `Bienvenue. Je suis votre coach PRFAQ.\n\nNous allons construire ensemble votre <strong>Press Release + FAQ</strong> selon la méthode <em>Working Backwards</em> d'Amazon.\n\nRègle fondamentale : <strong>Customer backwards, not skills forward.</strong>\n\nOn ne part pas de ce que Salesforce sait faire. On part du client.\n\nPremière question : <strong>Qui est précisément le client concerné ?</strong>\n\nPas "les entreprises" ou "les grandes boîtes". Une personne, un rôle, une situation concrète.`,
+          text: `Bienvenue. Je suis votre coach PRFAQ.\n\nEnsemble, nous allons construire votre <strong>Press Release + FAQ</strong> selon la méthode <em>Working Backwards</em> d'Amazon.\n\nUne règle fondamentale guide tout le travail : <strong>Customer backwards, not skills forward.</strong>\n\nOn ne part pas de ce que Salesforce sait faire — on part du client.\n\nPremière question : <strong>Qui est précisément le client visé ?</strong>\n\nPas "les entreprises" ou "les grands comptes". Une personne réelle, un rôle précis, dans une situation concrète.`,
           challengeIf: (a) => a.length < 20 || /entreprise|client|société|company|business/i.test(a) && !/directeur|responsable|manager|vp|director|head|chef|coo|cfo|cmo|ceo|role|poste|titre/i.test(a),
-          challenge: `Peux-tu préciser quel rôle dans l'entreprise, et dans quel contexte ? "Les entreprises" n'est pas un client — c'est un marché.`,
+          challenge: `Pouvez-vous préciser quel rôle dans l'organisation, et dans quel contexte ? "Les entreprises" n'est pas un client — c'est un marché.`,
           enChallenge: `Can you specify the role within the company, and in what context? "Businesses" is not a customer — it's a market.`,
           key: 'customer_who'
         },
@@ -1031,17 +1027,17 @@
       fr: [
         {
           type: 'coach',
-          text: `Passons au problème.\n\n<strong>Que cherche ce client à accomplir — du point de vue de son rôle et de ses responsabilités ?</strong>\n\nPas ce que Salesforce peut lui apporter. Ce qu'il essaie lui-même de faire, ou d'éviter.`,
+          text: `Passons au problème.\n\n<strong>Qu'est-ce que ce client cherche à accomplir — vu de son rôle et de ses responsabilités ?</strong>\n\nPas ce que Salesforce peut lui apporter. Ce qu'il essaie lui-même de faire, ou d'éviter.`,
           challengeIf: (a) => /besoin de|a besoin|needs|need to/i.test(a),
-          challenge: `Tu as formulé ça du point de vue de la solution. Reformule du point de vue du client : qu'est-ce qu'il essaie d'accomplir, dans son propre langage ?`,
+          challenge: `Vous avez formulé cela du point de vue de la solution. Reformulez du point de vue du client : qu'essaie-t-il d'accomplir, dans son propre langage ?`,
           enChallenge: `You framed this from the solution's perspective. Reframe from the customer's perspective: what are they trying to accomplish, in their own words?`,
           key: 'problem_goal'
         },
         {
           type: 'coach',
-          text: `Et concrètement : <strong>qu'est-ce qui l'empêche d'y arriver aujourd'hui ?</strong>\n\nQuelle est la friction réelle ? Quel est le coût de cette situation pour lui ?`,
+          text: `Et concrètement : <strong>qu'est-ce qui l'empêche d'y arriver aujourd'hui ?</strong>\n\nQuelle est la friction réelle ? Quel est le coût de cette situation pour lui — en temps, en risque, en opportunités manquées ?`,
           challengeIf: (a) => a.length < 30,
-          challenge: `C'est encore un peu vague. Peux-tu décrire une situation concrète où ce problème a eu une conséquence mesurable ?`,
+          challenge: `C'est encore un peu général. Pouvez-vous décrire une situation concrète où ce problème a eu une conséquence mesurable ?`,
           enChallenge: `That's still a bit vague. Can you describe a concrete situation where this problem had a measurable consequence?`,
           key: 'problem_friction'
         }
@@ -1069,15 +1065,15 @@
       fr: [
         {
           type: 'coach',
-          text: `Ne jamais supposer que le client part de zéro.\n\n<strong>Que fait-il aujourd'hui pour résoudre ce problème ?</strong>\n\nDonnez-moi les solutions actuelles : outils, processus manuels, concurrents, contournements.`,
+          text: `Ne supposons jamais que le client part de zéro.\n\n<strong>Comment gère-t-il ce problème aujourd'hui ?</strong>\n\nQuelles sont ses solutions actuelles : outils, processus manuels, alternatives, contournements ?`,
           challengeIf: (a) => /rien|nothing|no solution|pas de solution/i.test(a),
-          challenge: `Tout client a une façon de gérer le problème aujourd'hui — même imparfaite. Excel, emails, processus manuels, une autre solution ? Cherche encore.`,
+          challenge: `Tout client a une façon de gérer son problème aujourd'hui, même imparfaite. Excel, emails, processus manuels, un autre outil ? Creusez encore.`,
           enChallenge: `Every customer has some way of handling the problem today — even imperfectly. Excel, emails, manual processes, another solution? Look harder.`,
           key: 'alternatives'
         },
         {
           type: 'coach',
-          text: `<strong>Pourquoi ces alternatives ne suffisent-elles pas ?</strong>\n\nQu'est-ce qui manque, coûte trop cher, prend trop de temps, ou crée de nouveaux problèmes ?`,
+          text: `<strong>Pourquoi ces alternatives ne suffisent-elles pas ?</strong>\n\nQu'est-ce qui manque ? Qu'est-ce qui coûte trop cher, prend trop de temps, ou crée de nouveaux problèmes en retour ?`,
           key: 'alternatives_why_not'
         }
       ],
@@ -1101,15 +1097,15 @@
       fr: [
         {
           type: 'coach',
-          text: `Projetons-nous dans le futur.\n\n<strong>Imaginons que vous ayez réussi.</strong>\n\nQu'est-ce qui est concrètement différent pour le client ? Qu'a-t-il gagné ? Qu'a-t-il cessé de faire ? Quelle décision peut-il désormais prendre qu'il ne pouvait pas avant ?`,
+          text: `Projetons-nous dans le futur.\n\n<strong>Imaginez que vous ayez réussi.</strong>\n\nQu'est-ce qui est concrètement différent pour le client ? Qu'a-t-il gagné ? Qu'a-t-il arrêté de faire ? Quelle décision peut-il prendre maintenant qu'il ne pouvait pas prendre avant ?`,
           challengeIf: (a) => /efficace|efficient|rapide|faster|simple|easy|better/i.test(a) && a.length < 60,
-          challenge: `"Plus efficace" ou "plus rapide" ne dit rien. Qu'est-ce qui change concrètement dans son quotidien, ses décisions, ses résultats mesurables ?`,
+          challenge: `"Plus efficace" ou "plus rapide" ne suffit pas. Qu'est-ce qui change concrètement dans son quotidien, ses décisions, ses résultats mesurables ?`,
           enChallenge: `"More efficient" or "faster" says nothing specific. What concretely changes in their daily work, decisions, or measurable results?`,
           key: 'value'
         },
         {
           type: 'coach',
-          text: `<strong>Comment le client saurait-il que la solution fonctionne ?</strong>\n\nQuel indicateur, quel signal, quelle preuve observable lui dirait que quelque chose a réellement changé ?`,
+          text: `<strong>Comment le client saurait-il que ça fonctionne vraiment ?</strong>\n\nQuel indicateur, quel signal, quelle preuve tangible lui permettrait de dire que quelque chose a réellement changé ?`,
           key: 'value_proof'
         }
       ],
@@ -1133,15 +1129,15 @@
       fr: [
         {
           type: 'coach',
-          text: `Maintenant seulement, parlons de la solution.\n\n<strong>Que faudrait-il que la solution fasse</strong> pour répondre directement au problème que vous venez de décrire ?\n\nPas une liste de fonctionnalités. Les capacités essentielles qui adressent directement la friction identifiée.`,
+          text: `C'est maintenant seulement que l'on parle de la solution.\n\n<strong>Que devrait faire cette solution</strong> pour répondre directement au problème que vous venez de décrire ?\n\nPas une liste de fonctionnalités — les capacités essentielles qui s'attaquent directement à la friction identifiée.`,
           challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm|service cloud|marketing cloud/i.test(a) && a.length < 60,
-          challenge: `Tu m'as donné un nom de produit. Dis-moi ce que cette solution fait concrètement pour résoudre le problème de ce client spécifique — pas ce qu'elle est.`,
+          challenge: `Vous m'avez donné un nom de produit. Dites-moi ce que cette solution fait concrètement pour résoudre le problème de ce client précis — pas ce qu'elle est.`,
           enChallenge: `You gave me a product name. Tell me what this solution actually does to solve this specific customer's problem — not what it is.`,
           key: 'solution'
         },
         {
           type: 'coach',
-          text: `<strong>En quoi cette approche est-elle significativement meilleure que ce que le client fait aujourd'hui ?</strong>\n\nPas marginalement mieux — substantiellement différent. Pourquoi changerait-il ?`,
+          text: `<strong>En quoi cette approche est-elle vraiment meilleure que ce que le client fait aujourd'hui ?</strong>\n\nPas marginalement meilleure — substantiellement différente. Qu'est-ce qui ferait basculer sa décision ?`,
           key: 'solution_diff'
         }
       ],
@@ -1165,19 +1161,19 @@
       fr: [
         {
           type: 'coach',
-          text: `Excellent travail. On a maintenant les fondations.\n\nPassons à la rédaction du <strong>Press Release</strong>.\n\n<strong>Heading</strong> : en une ligne, quel est le produit ou service ?\n\nRègle : doit pouvoir être compris sans connaître Salesforce ni le jargon interne.`,
+          text: `Excellent travail. Nous avons maintenant les fondations.\n\nPassons à la rédaction du <strong>Press Release</strong>.\n\n<strong>Heading</strong> : en une ligne, quel est le produit ou service proposé ?\n\nRègle : il doit pouvoir être compris par quelqu'un qui ne connaît ni Salesforce, ni votre jargon interne.`,
           key: 'pr_heading'
         },
         {
           type: 'coach',
-          text: `<strong>Subheading</strong> : pour quel client précis, quel est le bénéfice principal ?\n\nFormat : "Pour [qui], [bénéfice] grâce à [quoi]"`,
+          text: `<strong>Subheading</strong> : pour quel client précis, quel est le bénéfice principal ?\n\nFormat suggéré : "Pour [qui], [bénéfice clé] grâce à [quoi]"`,
           key: 'pr_subheading'
         },
         {
           type: 'coach',
-          text: `<strong>Customer Quote</strong> : que dirait le client si la solution avait réellement créé cette valeur ?\n\nÉcrivez à la première personne. Pas de jargon. Ce qu'il ressentirait, ce qu'il aurait accompli.`,
+          text: `<strong>Customer Quote</strong> : que dirait ce client si la solution avait réellement créé cette valeur ?\n\nÉcrivez à la première personne, sans jargon. Ce qu'il ressent, ce qu'il a accompli — pas ce qu'il a utilisé.`,
           challengeIf: (a) => /salesforce|outil|solution|fonctionnalité|feature|tool/i.test(a),
-          challenge: `La citation parle encore d'outils et de technologie. Réécris-la du point de vue du client : ce qu'il a accompli, pas ce qu'il a utilisé.`,
+          challenge: `Cette citation parle encore d'outils ou de technologie. Réécrivez-la du point de vue du client : ce qu'il a accompli, pas ce qu'il a utilisé.`,
           enChallenge: `The quote still talks about tools and technology. Rewrite it from the customer's perspective: what they accomplished, not what they used.`,
           key: 'pr_quote'
         }
@@ -1207,17 +1203,17 @@
       fr: [
         {
           type: 'coach',
-          text: `Dernière étape — la <strong>FAQ</strong>.\n\nUne bonne FAQ doit révéler les questions difficiles, pas simplement rassurer.\n\n<strong>Quelle est la principale raison pour laquelle cette idée pourrait échouer ?</strong>\n\nSoyez honnête. C'est le plus important.`,
+          text: `Dernière étape — la <strong>FAQ</strong>.\n\nUne bonne FAQ ne rassure pas : elle pose les vraies questions difficiles.\n\n<strong>Quelle est la principale raison pour laquelle cette idée pourrait ne pas fonctionner ?</strong>\n\nSoyez honnête. C'est la question la plus importante de tout le processus.`,
           key: 'faq_risk'
         },
         {
           type: 'coach',
-          text: `<strong>Quelles hypothèses devez-vous encore valider avant de savoir si cette idée vaut vraiment la peine d'être poursuivie ?</strong>`,
+          text: `<strong>Quelles sont les hypothèses que vous devez encore valider avant de savoir si cette idée mérite vraiment d'être poursuivie ?</strong>`,
           key: 'faq_assumptions'
         },
         {
           type: 'coach',
-          text: `Pour finir : <strong>quelle est la prochaine conversation ou action concrète</strong> qui vous permettrait de valider l'hypothèse la plus importante ?\n\nUne action que vous pouvez faire dès la semaine prochaine.`,
+          text: `Pour terminer : <strong>quelle est la prochaine conversation ou action concrète</strong> qui vous permettrait de valider votre hypothèse la plus importante ?\n\nQuelque chose de faisable dès la semaine prochaine.`,
           key: 'faq_next'
         }
       ],
