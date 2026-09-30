@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>From Specialist to Trend Setter — PRFAQ Coach</title>
+  <title>Customer-Backwards — Préparer une conversation client</title>
 
-  <!-- Fonts -->
   <style>
     @font-face {
       font-family: 'AvantGarde';
@@ -34,7 +33,6 @@
   </style>
 
   <style>
-    /* ─── Sacred Tokens ─── */
     :root {
       --electric-blue-15: #001E5B;
       --electric-blue-30: #022AC0;
@@ -66,7 +64,6 @@
       --shadow-glow: 0 0 20px rgba(6,106,254,0.15);
     }
 
-    /* ─── Reset ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -77,20 +74,12 @@
       overflow-x: hidden;
     }
 
-    /* ─── Frosted Glass ─── */
     .glass {
       background: rgba(255,255,255,0.08);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: var(--radius-lg);
-    }
-    .glass-light {
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: var(--radius-md);
     }
     .glass-dark {
       background: rgba(0,30,91,0.55);
@@ -100,7 +89,6 @@
       border-radius: var(--radius-lg);
     }
 
-    /* ─── Sparkles ─── */
     .sparkle {
       position: absolute;
       pointer-events: none;
@@ -112,13 +100,10 @@
       50% { transform: translateY(-12px) rotate(8deg); }
     }
 
-    /* ─── Screens ─── */
     .screen { display: none; }
     .screen.active { display: flex; }
 
-    /* ══════════════════════════════════
-       HERO SCREEN
-    ══════════════════════════════════ */
+    /* ══ HERO ══ */
     #screen-hero {
       min-height: 100dvh;
       background: var(--gradient-evening);
@@ -129,7 +114,6 @@
       overflow: hidden;
       padding: var(--space-2xl) var(--space-xl);
     }
-
     .hero-bg-glow {
       position: absolute;
       width: 600px; height: 600px;
@@ -138,7 +122,6 @@
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
-
     .hero-content {
       position: relative;
       z-index: 2;
@@ -146,12 +129,10 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      max-width: 760px;
+      max-width: 800px;
       gap: var(--space-lg);
     }
-
     .hero-eyebrow {
-      font-family: 'SalesforceSans', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2.5px;
@@ -161,7 +142,6 @@
       border: 1px solid rgba(0,179,255,0.35);
       border-radius: 99px;
     }
-
     .hero-title {
       font-family: 'AvantGarde', sans-serif;
       font-size: clamp(38px, 6vw, 72px);
@@ -175,15 +155,13 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .hero-subtitle {
       font-size: 18px;
       font-weight: 300;
       line-height: 1.6;
       color: var(--cloud-blue-80);
-      max-width: 560px;
+      max-width: 580px;
     }
-
     .hero-question {
       padding: var(--space-md) var(--space-lg);
       border-left: 3px solid var(--electric-blue-50);
@@ -195,7 +173,6 @@
       background: rgba(6,106,254,0.08);
       border-radius: 0 var(--radius-md) var(--radius-md) 0;
     }
-
     .hero-astro {
       width: 160px;
       filter: drop-shadow(0 16px 40px rgba(6,106,254,0.35));
@@ -206,59 +183,52 @@
       50% { transform: translateY(-14px); }
     }
 
-    /* ── Step flip cards ── */
+    /* Step cards */
     .hero-steps {
       display: flex;
       gap: 10px;
       justify-content: center;
       flex-wrap: nowrap;
       width: 100%;
-      max-width: 960px;
-      /* Les cartes retournées ont besoin de hauteur — on aligne le bas */
+      max-width: 1000px;
       align-items: flex-start;
     }
     .step-card {
       flex: 1 1 0;
       min-width: 0;
-      /* Hauteur fixe commune : calculée pour que le dos le plus long tienne
-         (≈5 lignes à 11px + titre + padding) */
-      height: 110px;
       perspective: 900px;
       cursor: pointer;
     }
     .step-card-inner {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: auto;
+      min-height: 40px;
       transform-style: preserve-3d;
-      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: transform 0.5s cubic-bezier(0.4,0.2,0.2,1),
+                  height  0.5s cubic-bezier(0.4,0.2,0.2,1);
     }
-    .step-card.flipped .step-card-inner {
-      transform: rotateY(180deg);
-    }
-    /* Les deux faces occupent exactement le même rectangle */
-    .step-card-front,
-    .step-card-back {
+    .step-card.flipped .step-card-inner { transform: rotateY(180deg); }
+    .step-card-front {
       position: absolute;
       inset: 0;
+      border-radius: 99px;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      display: flex;
-      /* pas d'overflow:hidden — le contenu doit être visible */
-    }
-    .step-card-front {
-      border-radius: 99px;
-      padding: 0 12px;
+      padding: 8px 10px;
       background: rgba(6,106,254,0.15);
       border: 1px solid rgba(6,106,254,0.35);
       color: var(--cloud-blue-80);
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.4px;
-      white-space: nowrap;
-      gap: 5px;
+      letter-spacing: 0.3px;
+      white-space: normal;
+      text-align: center;
+      word-break: break-word;
+      display: flex;
       align-items: center;
       justify-content: center;
+      gap: 4px;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
     .step-card:hover .step-card-front {
@@ -267,537 +237,430 @@
       color: var(--white);
       box-shadow: 0 0 14px rgba(6,106,254,0.3);
     }
-    .step-card.flipped .step-card-front {
-      background: rgba(6,106,254,0.42);
-      border-color: var(--cloud-blue-68);
-      color: var(--white);
-    }
-    .step-num {
-      font-size: 14px;
-      opacity: 0.75;
-    }
+    .step-num { font-size: 13px; opacity: 0.72; flex-shrink: 0; }
     .step-card-back {
-      border-radius: 14px;
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       transform: rotateY(180deg);
       background: #FFFFFF;
-      border: 1px solid rgba(6,106,254,0.25);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.18), 0 0 0 1px rgba(6,106,254,0.12);
-      padding: 10px 11px 10px;
+      border: 1px solid rgba(1,118,211,0.3);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      padding: 10px;
+      display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: flex-start;
       gap: 4px;
-      overflow-y: auto;
     }
     .step-back-title {
-      font-size: 9.5px;
-      font-weight: 800;
-      color: #0176D3;
-      letter-spacing: 0.9px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      white-space: nowrap;
-      flex-shrink: 0;
+      color: var(--electric-blue-50);
     }
     .step-back-text {
-      font-size: 10.5px;
-      font-weight: 400;
-      color: #032D60;
-      line-height: 1.42;
-    }
-    @media (max-width: 900px) {
-      .hero-steps {
-        flex-wrap: wrap;
-        gap: 8px;
-        align-items: stretch;
-      }
-      .step-card {
-        flex: 0 0 calc(50% - 4px);
-        height: 110px;
-      }
-    }
-    @media (max-width: 480px) {
-      .step-card {
-        flex: 0 0 100%;
-      }
-    }
-    @media (max-width: 480px) {
-      .step-card {
-        flex: 0 0 100%;
-        height: 48px;
-      }
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--black);
     }
 
+    /* Buttons */
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-xs);
+      gap: 10px;
       padding: 16px 36px;
+      border-radius: var(--radius-xl);
       background: var(--electric-blue-50);
       color: var(--white);
-      border: none;
-      border-radius: var(--radius-xl);
       font-family: 'SalesforceSans', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
+      border: none;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      box-shadow: var(--shadow-glow);
+      box-shadow: 0 8px 32px rgba(6,106,254,0.45);
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
     }
     .btn-primary:hover {
-      background: var(--cloud-blue-68);
+      background: var(--electric-blue-30);
       transform: translateY(-2px);
-      box-shadow: 0 0 32px rgba(6,106,254,0.35);
+      box-shadow: 0 12px 40px rgba(6,106,254,0.55);
     }
-    .btn-primary:active { transform: translateY(0); }
 
-    /* ══════════════════════════════════
-       COACH SCREEN
-    ══════════════════════════════════ */
+    /* Sessions list */
+    .sessions-list {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .session-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(6,106,254,0.08);
+      border: 1px solid rgba(6,106,254,0.2);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      gap: 12px;
+    }
+    .session-item:hover { background: rgba(6,106,254,0.18); border-color: rgba(6,106,254,0.4); }
+    .session-item-info { flex: 1; min-width: 0; }
+    .session-item-client {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .session-item-date { font-size: 11px; color: var(--cloud-blue-80); margin-top: 2px; }
+    .session-item-progress {
+      font-size: 11px;
+      color: var(--cloud-blue-68);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .session-item-delete {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.3);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px;
+      transition: color 0.15s;
+      flex-shrink: 0;
+    }
+    .session-item-delete:hover { color: var(--hot-pink); }
+    .sessions-header {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ══ COACH SCREEN ══ */
     #screen-coach {
       min-height: 100dvh;
-      background: var(--gradient-evening);
       flex-direction: column;
-      position: relative;
-      overflow: hidden;
+      background: var(--black);
     }
-
     .coach-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--space-sm) var(--space-xl);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(0,11,46,0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      padding: var(--space-sm) var(--space-lg);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(0,11,46,0.9);
+      backdrop-filter: blur(20px);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
+      gap: var(--space-md);
     }
     .coach-header-brand {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
       font-family: 'AvantGarde', sans-serif;
       font-size: 15px;
+      font-weight: 700;
       color: var(--white);
+      white-space: nowrap;
     }
-    .coach-header-brand span {
-      color: var(--cloud-blue-68);
-    }
-
-    /* Progress bar */
+    .coach-header-brand span { color: var(--cloud-blue-68); }
     .progress-bar {
       display: flex;
-      gap: 6px;
+      gap: 4px;
       align-items: center;
+      flex: 1;
     }
     .progress-step {
-      width: 28px; height: 4px;
+      height: 4px;
+      flex: 1;
       border-radius: 2px;
-      background: rgba(255,255,255,0.15);
-      transition: background 0.4s, width 0.4s;
+      background: rgba(255,255,255,0.12);
+      transition: background 0.3s, width 0.3s;
     }
     .progress-step.done { background: var(--electric-blue-50); }
-    .progress-step.active { background: var(--cloud-blue-68); width: 40px; }
+    .progress-step.active { background: var(--cloud-blue-68); }
 
-    .lang-toggle {
-      display: flex;
-      gap: 4px;
-    }
-    .lang-btn {
-      padding: 4px 10px;
-      border-radius: 99px;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: transparent;
-      color: rgba(255,255,255,0.5);
-      transition: all 0.2s;
-    }
-    .lang-btn.active {
-      background: var(--electric-blue-50);
-      border-color: var(--electric-blue-50);
-      color: var(--white);
-    }
-
-    /* Main two-column layout */
     .coach-body {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
+      grid-template-columns: 1fr 380px;
       flex: 1;
-      min-height: calc(100dvh - 65px);
+      min-height: 0;
+      height: calc(100dvh - 57px);
     }
-
-    /* ── Left: Chat ── */
     .chat-panel {
       display: flex;
       flex-direction: column;
-      padding: var(--space-lg) var(--space-xl);
-      gap: var(--space-md);
+      padding: var(--space-lg);
       overflow-y: auto;
-      border-right: 1px solid rgba(255,255,255,0.06);
+      gap: var(--space-md);
     }
-
     .step-label {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-sm);
+      gap: 10px;
+      margin-bottom: 4px;
     }
     .step-badge {
-      width: 32px; height: 32px;
+      width: 28px; height: 28px;
       border-radius: 50%;
       background: var(--electric-blue-50);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-      flex-shrink: 0;
     }
     .step-name {
-      font-family: 'AvantGarde', sans-serif;
-      font-size: 13px;
-      letter-spacing: 1.5px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--cloud-blue-68);
     }
 
-    .messages {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-
+    .messages { display: flex; flex-direction: column; gap: var(--space-sm); flex: 1; }
     .msg {
-      display: flex;
-      gap: var(--space-sm);
-      align-items: flex-start;
-      animation: msg-in 0.3s ease forwards;
+      max-width: 86%;
+      padding: 12px 16px;
+      border-radius: var(--radius-lg);
+      font-size: 14px;
+      line-height: 1.65;
+      animation: msg-in 0.35s ease forwards;
     }
     @keyframes msg-in {
       from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
-    .msg-coach .msg-bubble {
+    .msg-coach {
       background: rgba(6,106,254,0.12);
-      border: 1px solid rgba(6,106,254,0.2);
-      border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 4px;
-      padding: var(--space-md);
-      font-size: 14px;
-      line-height: 1.65;
+      border: 1px solid rgba(6,106,254,0.22);
       color: var(--cloud-blue-95);
-      max-width: 500px;
+      align-self: flex-start;
     }
-    .msg-user .msg-bubble {
-      background: rgba(0,179,255,0.1);
-      border: 1px solid rgba(0,179,255,0.2);
-      border-radius: var(--radius-md) var(--radius-md) 4px var(--radius-md);
-      padding: var(--space-md);
-      font-size: 14px;
-      line-height: 1.65;
+    .msg-user {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
       color: var(--white);
-      max-width: 500px;
-      margin-left: auto;
+      align-self: flex-end;
     }
-    .msg-coach-avatar {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--gradient-dusk);
-      border: 1px solid rgba(6,106,254,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
+    .msg-challenge {
+      background: rgba(221,122,1,0.12);
+      border: 1px solid rgba(221,122,1,0.3);
+      color: #FFD580;
+      align-self: flex-start;
+      max-width: 86%;
     }
+    .msg strong { color: var(--cloud-blue-68); font-weight: 700; }
+    .msg em { color: var(--cloud-blue-80); font-style: italic; }
 
-    .msg-bubble strong {
-      color: var(--cloud-blue-68);
-      font-weight: 700;
-    }
-    .msg-bubble em {
-      color: var(--cloud-blue-80);
-      font-style: italic;
-    }
-
-    .challenge-block {
-      background: rgba(255,83,138,0.08);
-      border: 1px solid rgba(255,83,138,0.25);
-      border-radius: var(--radius-md);
-      padding: var(--space-sm) var(--space-md);
-      font-size: 13px;
-      color: #ffb3cc;
-      margin-top: var(--space-sm);
-    }
-    .challenge-block::before {
-      content: "⚡ Challenge — ";
-      font-weight: 700;
-      color: var(--hot-pink);
-    }
-
-    /* Input area */
-    .chat-input-area {
-      margin-top: auto;
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    .input-wrapper {
-      display: flex;
-      gap: var(--space-sm);
-      align-items: flex-end;
-    }
+    .chat-input-area { margin-top: auto; padding-top: var(--space-lg); }
+    .input-wrapper { position: relative; }
     .chat-textarea {
-      flex: 1;
-      min-height: 56px;
-      max-height: 160px;
-      padding: var(--space-sm) var(--space-md);
+      width: 100%;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.15);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       color: var(--white);
       font-family: 'SalesforceSans', sans-serif;
       font-size: 14px;
       line-height: 1.6;
+      padding: 14px 52px 14px 16px;
       resize: none;
-      outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
     .chat-textarea:focus {
+      outline: none;
       border-color: var(--electric-blue-50);
+      background: rgba(6,106,254,0.06);
     }
     .chat-textarea::placeholder { color: rgba(255,255,255,0.3); }
-
     .btn-send {
-      width: 52px; height: 52px;
-      border-radius: 50%;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      width: 36px; height: 36px;
+      border-radius: var(--radius-md);
       background: var(--electric-blue-50);
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.15s, background 0.15s;
-      flex-shrink: 0;
+      transition: background 0.15s;
     }
-    .btn-send:hover { background: var(--cloud-blue-68); transform: scale(1.08); }
-    .btn-send svg { width: 20px; height: 20px; fill: var(--white); }
+    .btn-send:hover { background: var(--electric-blue-30); }
+    .btn-send svg { fill: white; width: 18px; height: 18px; }
+    .hint-text { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 6px; }
 
-    .hint-text {
-      font-size: 11px;
-      color: rgba(255,255,255,0.3);
-      text-align: center;
-    }
-
-    /* ── Right: PRFAQ Canvas ── */
+    /* ══ CANVAS PANEL ══ */
     .canvas-panel {
+      border-left: 1px solid rgba(255,255,255,0.06);
+      overflow-y: auto;
+      padding: var(--space-lg);
       display: flex;
       flex-direction: column;
-      padding: var(--space-lg) var(--space-xl);
-      overflow-y: auto;
-      background: rgba(0,11,46,0.3);
       gap: var(--space-md);
+      background: rgba(0,11,46,0.5);
     }
-
     .canvas-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: var(--space-sm);
+      margin-bottom: var(--space-xs);
     }
     .canvas-title {
-      font-family: 'AvantGarde', sans-serif;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--cloud-blue-68);
-    }
-    .canvas-badge {
       font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 99px;
-      background: rgba(46,132,74,0.2);
-      border: 1px solid rgba(46,132,74,0.4);
-      color: #7be09a;
-    }
-
-    .prfaq-section {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-    .prfaq-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .prfaq-block {
-      padding: var(--space-md);
-      border-radius: var(--radius-md);
-      border-left: 3px solid var(--electric-blue-50);
-      background: rgba(6,106,254,0.06);
-      margin-bottom: var(--space-sm);
-    }
-    .prfaq-block-label {
-      font-size: 10px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .canvas-badge {
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: rgba(6,106,254,0.15);
+      border: 1px solid rgba(6,106,254,0.3);
       color: var(--cloud-blue-68);
+    }
+
+    /* Test final blocks */
+    .test-block {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border-left: 3px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .test-block.filled {
+      border-left-color: var(--green);
+      background: rgba(46,132,74,0.08);
+    }
+    .test-block-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
       margin-bottom: 6px;
     }
-    .prfaq-block-content {
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--cloud-blue-95);
-    }
-    .prfaq-block-placeholder {
-      font-size: 13px;
-      font-style: italic;
+    .test-block.filled .test-block-label { color: var(--green); }
+    .test-block-placeholder {
+      font-size: 12px;
       color: rgba(255,255,255,0.2);
+      font-style: italic;
     }
-
-    .canvas-section-title {
-      font-family: 'AvantGarde', sans-serif;
-      font-size: 16px;
+    .test-block-value {
+      font-size: 13px;
+      line-height: 1.55;
       color: var(--white);
-      margin-bottom: var(--space-sm);
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-    .canvas-section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(255,255,255,0.08);
     }
 
-    /* PR section in canvas */
-    .pr-heading {
-      font-family: 'AvantGarde', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.2;
-    }
-    .pr-subheading {
-      font-size: 15px;
-      color: var(--cloud-blue-80);
-      font-weight: 300;
-      margin-top: 6px;
-    }
-
-    /* Export button */
     .btn-export {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
-      padding: 12px 24px;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-      color: var(--white);
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
       font-family: 'SalesforceSans', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s;
-      width: 100%;
+      border: none;
+      transition: all 0.15s;
       justify-content: center;
     }
-    .btn-export:hover {
-      background: rgba(0,179,255,0.12);
-      border-color: var(--cloud-blue-68);
-    }
     .btn-export-slack {
-      background: rgba(74,21,75,0.25);
-      border-color: rgba(200,100,200,0.3);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--white);
     }
-    .btn-export-slack:hover {
-      background: rgba(74,21,75,0.4);
-      border-color: rgba(200,100,200,0.6);
+    .btn-export-slack:hover { background: rgba(255,255,255,0.14); }
+    .btn-export-md {
+      background: rgba(6,106,254,0.12);
+      border: 1px solid rgba(6,106,254,0.3);
+      color: var(--cloud-blue-80);
     }
+    .btn-export-md:hover { background: rgba(6,106,254,0.22); }
 
-    /* ══════════════════════════════════
-       FINAL SCREEN
-    ══════════════════════════════════ */
+    /* ══ FINAL SCREEN ══ */
     #screen-final {
       min-height: 100dvh;
-      background: var(--gradient-dusk);
+      background: var(--gradient-evening);
       flex-direction: column;
       align-items: center;
-      padding: var(--space-2xl) var(--space-xl);
-      gap: var(--space-xl);
+      justify-content: center;
       position: relative;
       overflow: hidden;
+      padding: var(--space-2xl) var(--space-xl);
     }
-
     .final-content {
-      max-width: 800px;
-      width: 100%;
-      z-index: 2;
       position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
     }
-
     .final-title {
       font-family: 'AvantGarde', sans-serif;
-      font-size: 36px;
-      color: var(--white);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
       text-align: center;
-      margin-bottom: var(--space-xl);
     }
-    .final-title span { color: var(--cloud-blue-68); }
-
-    .meta-grid {
+    .final-title span {
+      background: linear-gradient(90deg, var(--cloud-blue-68), var(--electric-blue-50));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .test-final-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--space-md);
-      margin-bottom: var(--space-lg);
     }
-
-    .meta-card {
-      padding: var(--space-md);
+    .test-final-card {
+      padding: var(--space-md) var(--space-lg);
+      background: rgba(0,30,91,0.6);
+      border: 1px solid rgba(6,106,254,0.25);
       border-radius: var(--radius-lg);
     }
-    .meta-card-title {
-      font-size: 10px;
+    .test-final-num {
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
+      color: var(--cloud-blue-68);
       text-transform: uppercase;
-      margin-bottom: var(--space-sm);
+      margin-bottom: 4px;
     }
-    .meta-card-title.green { color: var(--green); }
-    .meta-card-title.orange { color: var(--orange); }
-    .meta-card-title.hot-pink { color: var(--hot-pink); }
-    .meta-card-title.violet { color: var(--violet); }
-
-    .meta-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .test-final-q {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
     }
-    .meta-list li {
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--cloud-blue-95);
-      padding-left: var(--space-sm);
-      border-left: 2px solid rgba(255,255,255,0.1);
+    .test-final-a {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--white);
     }
-
     .final-actions {
       display: flex;
-      flex-direction: column;
       gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
     }
-
     .btn-restart {
       padding: 14px 32px;
       border-radius: var(--radius-xl);
@@ -808,38 +671,10 @@
       font-size: 14px;
       cursor: pointer;
       transition: all 0.2s;
-      text-align: center;
     }
-    .btn-restart:hover {
-      border-color: rgba(255,255,255,0.5);
-      color: var(--white);
-    }
+    .btn-restart:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
 
-    /* ══════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════ */
-    @media (max-width: 900px) {
-      .coach-body {
-        grid-template-columns: 1fr;
-      }
-      .canvas-panel {
-        border-top: 1px solid rgba(255,255,255,0.06);
-        border-right: none;
-        max-height: 50dvh;
-      }
-      .meta-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .coach-header { padding: var(--space-sm); }
-      .chat-panel, .canvas-panel { padding: var(--space-md); }
-      .hero-title { font-size: 32px; }
-      .hero-astro { width: 120px; }
-    }
-
-    /* ── Typing animation ── */
+    /* Typing dots */
     .typing-dots {
       display: inline-flex;
       gap: 4px;
@@ -859,10 +694,26 @@
       40% { transform: translateY(-6px); opacity: 1; }
     }
 
-    /* ── Scroll to bottom ── */
     .scroll-anchor { height: 1px; }
 
-    /* reduced motion */
+    @media (max-width: 900px) {
+      .coach-body { grid-template-columns: 1fr; }
+      .canvas-panel {
+        border-top: 1px solid rgba(255,255,255,0.06);
+        border-left: none;
+        max-height: 50dvh;
+      }
+      .test-final-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .coach-header { padding: var(--space-sm); }
+      .chat-panel, .canvas-panel { padding: var(--space-md); }
+      .hero-title { font-size: 32px; }
+      .hero-astro { width: 120px; }
+      .hero-steps { flex-wrap: wrap; gap: 8px; }
+      .step-card { flex: 0 0 calc(50% - 4px); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .sparkle, .hero-astro { animation: none; }
     }
@@ -870,21 +721,16 @@
 </head>
 <body>
 
-  <!-- ══════════════════════════════════
-       HERO SCREEN
-  ══════════════════════════════════ -->
+  <!-- ══ HERO ══ -->
   <section id="screen-hero" class="screen active">
     <div class="hero-bg-glow"></div>
 
-    <!-- Sparkles left -->
     <img class="sparkle" src="./assets/sparkles/Sparkles Blue Main.svg"
          style="left:3%;top:15%;width:48px;animation-duration:4.5s;" aria-hidden="true" />
     <img class="sparkle" src="./assets/sparkles/Sparkles Yellow Main.svg"
          style="left:6%;top:60%;width:32px;animation-duration:5.5s;animation-delay:0.8s;" aria-hidden="true" />
     <img class="sparkle" src="./assets/sparkles/Sparkles DarkBlue Main.svg"
          style="left:2%;top:80%;width:64px;animation-duration:6s;animation-delay:1.2s;" aria-hidden="true" />
-
-    <!-- Sparkles right -->
     <img class="sparkle" src="./assets/sparkles/Sparkles Yellow Main.svg"
          style="right:4%;top:12%;width:56px;animation-duration:5s;animation-delay:0.5s;" aria-hidden="true" />
     <img class="sparkle" src="./assets/sparkles/Sparkles Blue Main.svg"
@@ -895,138 +741,126 @@
     <div class="hero-content">
       <img src="./assets/characters/astro.png" alt="Astro" class="hero-astro" />
 
-      <span class="hero-eyebrow">Working Backwards · Amazon Method · Salesforce</span>
+      <span class="hero-eyebrow">Working Backwards · Salesforce · From Specialist to Trend Setter</span>
 
       <h1 class="hero-title">
-        From Specialist<br/>to <span>Trend Setter</span>
+        Customer<br/><span>Backwards</span>
       </h1>
 
       <p class="hero-subtitle">
-        De l'expertise solution à l'influence dans la conversation.<br/>
-        <em>From solution expertise to conversation leadership.</em>
+        Préparer une conversation client en partant de la valeur à créer —<br/>
+        pas de la solution à présenter.
       </p>
 
       <blockquote class="hero-question">
-        « Qu'est-ce qui doit avoir changé dans la façon dont le client voit son problème lorsque nous quittons la pièce ? »
+        « Qu'est-ce que le client doit comprendre, envisager ou décider différemment après cette conversation ? »
       </blockquote>
 
       <div class="hero-steps">
-
-        <div class="step-card" onclick="this.classList.toggle('flipped')">
+        <div class="step-card" onclick="flipCard(this)">
           <div class="step-card-inner">
-            <div class="step-card-front"><span class="step-num">①</span> Customer</div>
+            <div class="step-card-front"><span class="step-num">①</span> Destination</div>
             <div class="step-card-back">
-              <span class="step-back-title">① Customer</span>
-              <span class="step-back-text">Qui est le client visé ? Un rôle précis, dans un contexte réel — pas un segment, une personne concrète.</span>
+              <span class="step-back-title">① Destination</span>
+              <span class="step-back-text">Dans 12–18 mois, qu'est-ce que le client fait mieux, plus vite, différemment ? Un résultat concret et observable.</span>
             </div>
           </div>
         </div>
-
-        <div class="step-card" onclick="this.classList.toggle('flipped')">
+        <div class="step-card" onclick="flipCard(this)">
           <div class="step-card-inner">
-            <div class="step-card-front"><span class="step-num">②</span> Problem</div>
+            <div class="step-card-front"><span class="step-num">②</span> Client</div>
             <div class="step-card-back">
-              <span class="step-back-title">② Problem</span>
-              <span class="step-back-text">Qu'essaie-t-il d'accomplir ? Quelle friction l'en empêche ? Quel est le coût réel de ce blocage ?</span>
+              <span class="step-back-title">② Client</span>
+              <span class="step-back-text">Pour qui cette transformation crée-t-elle de la valeur ? Rôle précis, sponsor, utilisateur final, bénéficiaire.</span>
             </div>
           </div>
         </div>
-
-        <div class="step-card" onclick="this.classList.toggle('flipped')">
+        <div class="step-card" onclick="flipCard(this)">
           <div class="step-card-inner">
-            <div class="step-card-front"><span class="step-num">③</span> Alternatives</div>
+            <div class="step-card-front"><span class="step-num">③</span> Problème</div>
             <div class="step-card-back">
-              <span class="step-back-title">③ Alternatives</span>
-              <span class="step-back-text">Comment gère-t-il ce problème aujourd'hui ? Outils, contournements — et pourquoi ça reste insuffisant.</span>
+              <span class="step-back-title">③ Problème</span>
+              <span class="step-back-text">Qu'est-ce qui empêche le client d'atteindre cette destination ? Le problème business, ses conséquences, ce qu'il essaie déjà de faire.</span>
             </div>
           </div>
         </div>
-
-        <div class="step-card" onclick="this.classList.toggle('flipped')">
+        <div class="step-card" onclick="flipCard(this)">
           <div class="step-card-inner">
-            <div class="step-card-front"><span class="step-num">④</span> Value</div>
+            <div class="step-card-front"><span class="step-num">④</span> Opportunité</div>
             <div class="step-card-back">
-              <span class="step-back-title">④ Value</span>
-              <span class="step-back-text">Si on réussit, qu'est-ce qui change pour lui ? Quel indicateur lui permettrait de le constater ?</span>
+              <span class="step-back-title">④ Opportunité</span>
+              <span class="step-back-text">Si on supprimait une contrainte majeure, qu'est-ce qui deviendrait possible ? Pas encore Salesforce — la meilleure réponse au problème.</span>
             </div>
           </div>
         </div>
-
-        <div class="step-card" onclick="this.classList.toggle('flipped')">
+        <div class="step-card" onclick="flipCard(this)">
           <div class="step-card-inner">
-            <div class="step-card-front"><span class="step-num">⑤</span> Solution</div>
+            <div class="step-card-front"><span class="step-num">⑤</span> Conditions</div>
             <div class="step-card-back">
-              <span class="step-back-title">⑤ Solution</span>
-              <span class="step-back-text">Ce que la solution doit faire, pas ce qu'elle est. Les capacités qui répondent directement à la friction identifiée.</span>
+              <span class="step-back-title">⑤ Conditions</span>
+              <span class="step-back-text">Quelles conditions doivent être réunies ? Business, people, process, data, technologie, gouvernance, adoption.</span>
             </div>
           </div>
         </div>
-
-        <div class="step-card" onclick="this.classList.toggle('flipped')">
+        <div class="step-card" onclick="flipCard(this)">
           <div class="step-card-inner">
-            <div class="step-card-front"><span class="step-num">⑥</span> Press Release</div>
+            <div class="step-card-front"><span class="step-num">⑥</span> Salesforce</div>
             <div class="step-card-back">
-              <span class="step-back-title">⑥ Press Release</span>
-              <span class="step-back-text">Le communiqué fictif du lancement : titre, sous-titre, citation client. Rédigé comme si c'était déjà publié.</span>
+              <span class="step-back-title">⑥ Contribution Salesforce</span>
+              <span class="step-back-text">Seulement maintenant : où Salesforce peut-il réellement créer de la valeur ? Ce qu'il permet, ce qu'il ne résout pas seul.</span>
             </div>
           </div>
         </div>
-
-        <div class="step-card" onclick="this.classList.toggle('flipped')">
+        <div class="step-card" onclick="flipCard(this)">
           <div class="step-card-inner">
-            <div class="step-card-front"><span class="step-num">⑦</span> FAQ</div>
+            <div class="step-card-front"><span class="step-num">⑦</span> Conversation</div>
             <div class="step-card-back">
-              <span class="step-back-title">⑦ FAQ</span>
-              <span class="step-back-text">Les vraies questions difficiles : risques, hypothèses à valider, prochaine action pour tester l'idée.</span>
+              <span class="step-back-title">⑦ Conversation</span>
+              <span class="step-back-text">Quelle hypothèse voulons-nous tester ? Ce n'est pas un pitch — c'est une conversation pour vérifier si notre compréhension est juste.</span>
             </div>
           </div>
         </div>
-
       </div>
 
-      <button class="btn-primary" onclick="startCoach()">
+      <button class="btn-primary" onclick="startNew()">
         <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
-        Démarrer mon PRFAQ
+        Démarrer une préparation
       </button>
+
+      <div id="sessions-container" style="display:none; width:100%; max-width:600px; flex-direction:column; gap:var(--space-sm);">
+        <div class="sessions-header">Sessions en cours</div>
+        <div class="sessions-list" id="sessions-list"></div>
+      </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════
-       COACH SCREEN
-  ══════════════════════════════════ -->
+  <!-- ══ COACH SCREEN ══ -->
   <section id="screen-coach" class="screen">
-    <!-- Header -->
     <header class="coach-header">
       <div class="coach-header-brand">
-        PRFAQ <span>Coach</span>
+        Customer <span>Backwards</span>
       </div>
       <div class="progress-bar" id="progress-bar"></div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="lang-toggle">
-          <button class="lang-btn active" onclick="setLang('fr')" id="lang-fr">FR</button>
-          <button class="lang-btn" onclick="setLang('en')" id="lang-en">EN</button>
-        </div>
-      </div>
+      <button onclick="goHome()" style="background:none;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.6);border-radius:var(--radius-md);padding:6px 14px;font-family:SalesforceSans,sans-serif;font-size:12px;cursor:pointer;">
+        ← Accueil
+      </button>
     </header>
 
-    <!-- Body -->
     <div class="coach-body">
-
-      <!-- Left: Chat -->
       <div class="chat-panel" id="chat-panel">
         <div class="step-label">
           <div class="step-badge" id="step-badge">1</div>
-          <span class="step-name" id="step-name">Customer</span>
+          <span class="step-name" id="step-name">Destination</span>
         </div>
 
         <div class="messages" id="messages"></div>
 
-        <div class="chat-input-area" style="margin-top:var(--space-xl);">
+        <div class="chat-input-area">
           <div class="input-wrapper">
             <textarea
               class="chat-textarea"
               id="user-input"
-              placeholder="Votre réponse… / Your answer…"
+              placeholder="Votre réponse…"
               rows="2"
               onkeydown="handleKey(event)"
             ></textarea>
@@ -1034,76 +868,59 @@
               <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
           </div>
-          <p class="hint-text">Entrée + Shift pour saut de ligne · Enter to send</p>
+          <p class="hint-text">Shift+Entrée pour saut de ligne · Entrée pour envoyer</p>
         </div>
 
         <div class="scroll-anchor" id="scroll-anchor"></div>
       </div>
 
-      <!-- Right: Canvas -->
+      <!-- Canvas = Test Final en construction -->
       <div class="canvas-panel" id="canvas-panel">
         <div class="canvas-header">
-          <span class="canvas-title">PRFAQ Canvas</span>
+          <span class="canvas-title">Test Final</span>
           <span class="canvas-badge" id="canvas-status">En construction…</span>
         </div>
 
-        <!-- PR Section -->
-        <div class="prfaq-section" id="canvas-pr">
-          <div class="canvas-section-title">Press Release</div>
-
-          <div class="prfaq-block" id="canvas-heading">
-            <div class="prfaq-block-label">Heading</div>
-            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
-          </div>
-
-          <div class="prfaq-block" id="canvas-subheading">
-            <div class="prfaq-block-label">Subheading</div>
-            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
-          </div>
-
-          <div class="prfaq-block" id="canvas-problem">
-            <div class="prfaq-block-label">Problem</div>
-            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
-          </div>
-
-          <div class="prfaq-block" id="canvas-solution-canvas">
-            <div class="prfaq-block-label">Solution</div>
-            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
-          </div>
-
-          <div class="prfaq-block" id="canvas-value">
-            <div class="prfaq-block-label">Value / Differentiation</div>
-            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
-          </div>
-
-          <div class="prfaq-block" id="canvas-quote">
-            <div class="prfaq-block-label">Customer Quote</div>
-            <div class="prfaq-block-content"><span class="prfaq-block-placeholder">En attente…</span></div>
-          </div>
+        <div class="test-block" id="tb-qui">
+          <div class="test-block-label">① Pour qui ?</div>
+          <div class="test-block-placeholder" id="tb-qui-ph">Quel client / métier est concerné ?</div>
+        </div>
+        <div class="test-block" id="tb-quoi">
+          <div class="test-block-label">② Pour quoi ?</div>
+          <div class="test-block-placeholder" id="tb-quoi-ph">Quel changement cherche-t-il réellement ?</div>
+        </div>
+        <div class="test-block" id="tb-maintenant">
+          <div class="test-block-label">③ Pourquoi maintenant ?</div>
+          <div class="test-block-placeholder" id="tb-maintenant-ph">Qu'est-ce qui rend le sujet important aujourd'hui ?</div>
+        </div>
+        <div class="test-block" id="tb-changer">
+          <div class="test-block-label">④ Pourquoi changer ?</div>
+          <div class="test-block-placeholder" id="tb-changer-ph">Qu'est-ce qui ne fonctionne plus suffisamment bien ?</div>
+        </div>
+        <div class="test-block" id="tb-conditions">
+          <div class="test-block-label">⑤ Ce qui doit être vrai</div>
+          <div class="test-block-placeholder" id="tb-conditions-ph">Quelles conditions doivent être réunies ?</div>
+        </div>
+        <div class="test-block" id="tb-salesforce">
+          <div class="test-block-label">⑥ Pourquoi Salesforce ?</div>
+          <div class="test-block-placeholder" id="tb-salesforce-ph">Quelle contribution spécifique pouvons-nous apporter ?</div>
         </div>
 
-        <!-- FAQ Section -->
-        <div class="prfaq-section" id="canvas-faq-section" style="margin-top:var(--space-md);">
-          <div class="canvas-section-title">FAQ</div>
-          <div id="canvas-faq-list"></div>
-        </div>
-
-        <!-- Export actions -->
-        <div style="display:flex;flex-direction:column;gap:var(--space-sm);margin-top:var(--space-md);" id="export-actions" style="display:none!important;opacity:0;pointer-events:none;">
+        <div id="export-actions" style="display:none; flex-direction:column; gap:8px; margin-top:8px;">
           <button class="btn-export btn-export-slack" onclick="exportSlack()">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.122 2.521a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.268 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zm-2.523 10.122a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.268a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
-            Exporter vers Slack Canvas
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.122 2.521a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.268 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zm-2.523 10.122a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.268a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
+            Copier pour Slack Canvas
+          </button>
+          <button class="btn-export btn-export-md" onclick="exportMarkdown()">
+            ↓ Télécharger .md
           </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════
-       FINAL SCREEN
-  ══════════════════════════════════ -->
+  <!-- ══ FINAL SCREEN ══ -->
   <section id="screen-final" class="screen">
-    <!-- Sparkles -->
     <img class="sparkle" src="./assets/sparkles/Sparkles Yellow Main.svg"
          style="left:2%;top:20%;width:56px;" aria-hidden="true" />
     <img class="sparkle" src="./assets/sparkles/Sparkles Blue Main.svg"
@@ -1114,311 +931,272 @@
          style="right:4%;top:65%;width:64px;animation-delay:1.2s;" aria-hidden="true" />
 
     <div class="final-content">
-      <h2 class="final-title">Votre PRFAQ est <span>prêt</span> ✦</h2>
+      <h2 class="final-title">Votre préparation est <span>prête</span> ✦</h2>
+      <p style="text-align:center;color:var(--cloud-blue-80);font-size:15px;font-weight:300;">
+        Vous pouvez répondre aux 6 questions du test final. La conversation peut commencer.
+      </p>
 
-      <div id="final-prfaq-preview" class="glass-dark" style="padding:var(--space-xl);margin-bottom:var(--space-xl);border-radius:var(--radius-xl);">
-        <!-- Populated by JS -->
-      </div>
-
-      <div class="meta-grid" id="meta-grid">
+      <div class="test-final-grid" id="final-grid">
         <!-- Populated by JS -->
       </div>
 
       <div class="final-actions">
-        <button class="btn-primary" onclick="exportSlack()" style="width:100%;justify-content:center;">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.122 2.521a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.268 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zm-2.523 10.122a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.268a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
-          Exporter vers Slack Canvas
+        <button class="btn-primary" onclick="exportSlack()" style="justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.122 2.521a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.268 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zm-2.523 10.122a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.268a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
+          Copier pour Slack Canvas
         </button>
-        <button class="btn-restart" onclick="restartCoach()">↩ Nouveau PRFAQ</button>
+        <button class="btn-restart" onclick="goHome()">← Retour à l'accueil</button>
+        <button class="btn-restart" onclick="restartCoach()">↩ Recommencer</button>
       </div>
     </div>
   </section>
 
   <script>
-  // ─────────────────────────────────────────
-  //  STATE
-  // ─────────────────────────────────────────
-  let lang = 'fr';
+  // ─── STATE ───
   let currentStep = 0;
   let subStep = 0;
   let answers = {};
-  let challengePending = false;
   let waitingForChallenge = false;
+  let currentSessionId = null;
 
   const STEPS = [
-    { id: 'customer',     num: 1 },
-    { id: 'problem',      num: 2 },
-    { id: 'alternatives', num: 3 },
-    { id: 'value',        num: 4 },
-    { id: 'solution',     num: 5 },
-    { id: 'pr',           num: 6 },
-    { id: 'faq',          num: 7 },
+    { id: 'destination', num: 1, label: 'Destination' },
+    { id: 'client',      num: 2, label: 'Client' },
+    { id: 'probleme',    num: 3, label: 'Problème' },
+    { id: 'opportunite', num: 4, label: 'Opportunité' },
+    { id: 'conditions',  num: 5, label: 'Conditions' },
+    { id: 'salesforce',  num: 6, label: 'Salesforce' },
+    { id: 'conversation',num: 7, label: 'Conversation' },
   ];
 
-  // ─────────────────────────────────────────
-  //  SCRIPT — Bilingue FR/EN
-  // ─────────────────────────────────────────
+  // ─── SCRIPT ───
   const SCRIPT = {
-    customer: {
-      fr: [
-        {
-          type: 'coach',
-          text: `Bienvenue. Je suis votre coach PRFAQ.\n\nEnsemble, nous allons construire votre <strong>Press Release + FAQ</strong> selon la méthode <em>Working Backwards</em> d'Amazon.\n\nUne règle fondamentale guide tout le travail : <strong>Customer backwards, not skills forward.</strong>\n\nOn ne part pas de ce que Salesforce sait faire — on part du client.\n\nPremière question : <strong>Qui est précisément le client visé ?</strong>\n\nPas "les entreprises" ou "les grands comptes". Une personne réelle, un rôle précis, dans une situation concrète.`,
-          challengeIf: (a) => a.length < 20 || /entreprise|client|société|company|business/i.test(a) && !/directeur|responsable|manager|vp|director|head|chef|coo|cfo|cmo|ceo|role|poste|titre/i.test(a),
-          challenge: `Pouvez-vous préciser quel rôle dans l'organisation, et dans quel contexte ? "Les entreprises" n'est pas un client — c'est un marché.`,
-          enChallenge: `Can you specify the role within the company, and in what context? "Businesses" is not a customer — it's a market.`,
-          key: 'customer_who'
-        },
-        {
-          type: 'coach',
-          text: `Bien. Maintenant, une précision importante :\n\n<strong>Qui n'est PAS le client de cette initiative ?</strong>\n\nDélimiter ce que vous ne ciblez pas est aussi important que de définir ce que vous ciblez.`,
-          key: 'customer_not'
-        }
-      ],
-      en: [
-        {
-          type: 'coach',
-          text: `Welcome. I'm your PRFAQ coach.\n\nTogether we'll build your <strong>Press Release + FAQ</strong> using Amazon's <em>Working Backwards</em> method.\n\nFundamental rule: <strong>Customer backwards, not skills forward.</strong>\n\nWe don't start from what Salesforce can do. We start from the customer.\n\nFirst question: <strong>Who exactly is the target customer?</strong>\n\nNot "companies" or "big businesses". A person, a role, a concrete situation.`,
-          challengeIf: (a) => a.length < 20 || /enterprise|customer|company|business/i.test(a) && !/director|manager|vp|head|ceo|coo|cfo|cmo|role|title|position/i.test(a),
-          challenge: `Peux-tu préciser quel rôle dans l'entreprise, et dans quel contexte ?`,
-          enChallenge: `Can you specify the role within the company, and in what context? "Companies" is not a customer — it's a market.`,
-          key: 'customer_who'
-        },
-        {
-          type: 'coach',
-          text: `Good. Now, an important clarification:\n\n<strong>Who is NOT the customer of this initiative?</strong>\n\nDefining what you're not targeting is just as important as defining what you are.`,
-          key: 'customer_not'
-        }
-      ]
-    },
-    problem: {
-      fr: [
-        {
-          type: 'coach',
-          text: `Passons au problème.\n\n<strong>Qu'est-ce que ce client cherche à accomplir — vu de son rôle et de ses responsabilités ?</strong>\n\nPas ce que Salesforce peut lui apporter. Ce qu'il essaie lui-même de faire, ou d'éviter.`,
-          challengeIf: (a) => /besoin de|a besoin|needs|need to/i.test(a),
-          challenge: `Vous avez formulé cela du point de vue de la solution. Reformulez du point de vue du client : qu'essaie-t-il d'accomplir, dans son propre langage ?`,
-          enChallenge: `You framed this from the solution's perspective. Reframe from the customer's perspective: what are they trying to accomplish, in their own words?`,
-          key: 'problem_goal'
-        },
-        {
-          type: 'coach',
-          text: `Et concrètement : <strong>qu'est-ce qui l'empêche d'y arriver aujourd'hui ?</strong>\n\nQuelle est la friction réelle ? Quel est le coût de cette situation pour lui — en temps, en risque, en opportunités manquées ?`,
-          challengeIf: (a) => a.length < 30,
-          challenge: `C'est encore un peu général. Pouvez-vous décrire une situation concrète où ce problème a eu une conséquence mesurable ?`,
-          enChallenge: `That's still a bit vague. Can you describe a concrete situation where this problem had a measurable consequence?`,
-          key: 'problem_friction'
-        }
-      ],
-      en: [
-        {
-          type: 'coach',
-          text: `Let's move to the problem.\n\n<strong>What is this customer trying to accomplish — from their role and responsibilities perspective?</strong>\n\nNot what Salesforce can bring them. What they're trying to do themselves, or avoid.`,
-          challengeIf: (a) => /needs to|need to|requires/i.test(a),
-          challenge: `You framed this from the solution's perspective. Reframe from the customer's perspective.`,
-          enChallenge: `You framed this from the solution's perspective. Reframe from the customer's perspective: what are they trying to accomplish, in their own words?`,
-          key: 'problem_goal'
-        },
-        {
-          type: 'coach',
-          text: `And concretely: <strong>what is preventing them from getting there today?</strong>\n\nWhat is the real friction? What does this situation cost them?`,
-          challengeIf: (a) => a.length < 30,
-          challenge: `C'est encore un peu vague. Describe a concrete situation.`,
-          enChallenge: `That's still a bit vague. Can you describe a concrete situation where this problem had a measurable consequence?`,
-          key: 'problem_friction'
-        }
-      ]
-    },
-    alternatives: {
-      fr: [
-        {
-          type: 'coach',
-          text: `Ne supposons jamais que le client part de zéro.\n\n<strong>Comment gère-t-il ce problème aujourd'hui ?</strong>\n\nQuelles sont ses solutions actuelles : outils, processus manuels, alternatives, contournements ?`,
-          challengeIf: (a) => /rien|nothing|no solution|pas de solution/i.test(a),
-          challenge: `Tout client a une façon de gérer son problème aujourd'hui, même imparfaite. Excel, emails, processus manuels, un autre outil ? Creusez encore.`,
-          enChallenge: `Every customer has some way of handling the problem today — even imperfectly. Excel, emails, manual processes, another solution? Look harder.`,
-          key: 'alternatives'
-        },
-        {
-          type: 'coach',
-          text: `<strong>Pourquoi ces alternatives ne suffisent-elles pas ?</strong>\n\nQu'est-ce qui manque ? Qu'est-ce qui coûte trop cher, prend trop de temps, ou crée de nouveaux problèmes en retour ?`,
-          key: 'alternatives_why_not'
-        }
-      ],
-      en: [
-        {
-          type: 'coach',
-          text: `Never assume the customer starts from scratch.\n\n<strong>What do they do today to solve this problem?</strong>\n\nGive me the current solutions: tools, manual processes, competitors, workarounds.`,
-          challengeIf: (a) => /nothing|no solution|none/i.test(a),
-          challenge: `Every customer has some way of handling the problem today.`,
-          enChallenge: `Every customer has some way of handling the problem today — even imperfectly. Excel, emails, manual processes, another solution? Look harder.`,
-          key: 'alternatives'
-        },
-        {
-          type: 'coach',
-          text: `<strong>Why aren't these alternatives enough?</strong>\n\nWhat's missing, too expensive, too slow, or creating new problems?`,
-          key: 'alternatives_why_not'
-        }
-      ]
-    },
-    value: {
-      fr: [
-        {
-          type: 'coach',
-          text: `Projetons-nous dans le futur.\n\n<strong>Imaginez que vous ayez réussi.</strong>\n\nQu'est-ce qui est concrètement différent pour le client ? Qu'a-t-il gagné ? Qu'a-t-il arrêté de faire ? Quelle décision peut-il prendre maintenant qu'il ne pouvait pas prendre avant ?`,
-          challengeIf: (a) => /efficace|efficient|rapide|faster|simple|easy|better/i.test(a) && a.length < 60,
-          challenge: `"Plus efficace" ou "plus rapide" ne suffit pas. Qu'est-ce qui change concrètement dans son quotidien, ses décisions, ses résultats mesurables ?`,
-          enChallenge: `"More efficient" or "faster" says nothing specific. What concretely changes in their daily work, decisions, or measurable results?`,
-          key: 'value'
-        },
-        {
-          type: 'coach',
-          text: `<strong>Comment le client saurait-il que ça fonctionne vraiment ?</strong>\n\nQuel indicateur, quel signal, quelle preuve tangible lui permettrait de dire que quelque chose a réellement changé ?`,
-          key: 'value_proof'
-        }
-      ],
-      en: [
-        {
-          type: 'coach',
-          text: `Let's project forward.\n\n<strong>Imagine you succeeded.</strong>\n\nWhat is concretely different for the customer? What have they gained? What have they stopped doing? What decision can they now make that they couldn't before?`,
-          challengeIf: (a) => /efficient|faster|simple|easy|better/i.test(a) && a.length < 60,
-          challenge: `"More efficient" says nothing specific. What concretely changes in their daily work?`,
-          enChallenge: `"More efficient" or "faster" says nothing specific. What concretely changes in their daily work, decisions, or measurable results?`,
-          key: 'value'
-        },
-        {
-          type: 'coach',
-          text: `<strong>How would the customer know the solution works?</strong>\n\nWhat indicator, signal, or observable proof would tell them something has genuinely changed?`,
-          key: 'value_proof'
-        }
-      ]
-    },
-    solution: {
-      fr: [
-        {
-          type: 'coach',
-          text: `C'est maintenant seulement que l'on parle de la solution.\n\n<strong>Que devrait faire cette solution</strong> pour répondre directement au problème que vous venez de décrire ?\n\nPas une liste de fonctionnalités — les capacités essentielles qui s'attaquent directement à la friction identifiée.`,
-          challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm|service cloud|marketing cloud/i.test(a) && a.length < 60,
-          challenge: `Vous m'avez donné un nom de produit. Dites-moi ce que cette solution fait concrètement pour résoudre le problème de ce client précis — pas ce qu'elle est.`,
-          enChallenge: `You gave me a product name. Tell me what this solution actually does to solve this specific customer's problem — not what it is.`,
-          key: 'solution'
-        },
-        {
-          type: 'coach',
-          text: `<strong>En quoi cette approche est-elle vraiment meilleure que ce que le client fait aujourd'hui ?</strong>\n\nPas marginalement meilleure — substantiellement différente. Qu'est-ce qui ferait basculer sa décision ?`,
-          key: 'solution_diff'
-        }
-      ],
-      en: [
-        {
-          type: 'coach',
-          text: `Only now, let's talk about the solution.\n\n<strong>What would the solution need to do</strong> to directly address the problem you just described?\n\nNot a feature list. The essential capabilities that directly address the identified friction.`,
-          challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm/i.test(a) && a.length < 60,
-          challenge: `You gave me a product name. Tell me what it actually does to solve this customer's problem.`,
-          enChallenge: `You gave me a product name. Tell me what this solution actually does to solve this specific customer's problem — not what it is.`,
-          key: 'solution'
-        },
-        {
-          type: 'coach',
-          text: `<strong>How is this approach significantly better than what the customer does today?</strong>\n\nNot marginally better — substantially different. Why would they change?`,
-          key: 'solution_diff'
-        }
-      ]
-    },
-    pr: {
-      fr: [
-        {
-          type: 'coach',
-          text: `Excellent travail. Nous avons maintenant les fondations.\n\nPassons à la rédaction du <strong>Press Release</strong>.\n\n<strong>Heading</strong> : en une ligne, quel est le produit ou service proposé ?\n\nRègle : il doit pouvoir être compris par quelqu'un qui ne connaît ni Salesforce, ni votre jargon interne.`,
-          key: 'pr_heading'
-        },
-        {
-          type: 'coach',
-          text: `<strong>Subheading</strong> : pour quel client précis, quel est le bénéfice principal ?\n\nFormat suggéré : "Pour [qui], [bénéfice clé] grâce à [quoi]"`,
-          key: 'pr_subheading'
-        },
-        {
-          type: 'coach',
-          text: `<strong>Customer Quote</strong> : que dirait ce client si la solution avait réellement créé cette valeur ?\n\nÉcrivez à la première personne, sans jargon. Ce qu'il ressent, ce qu'il a accompli — pas ce qu'il a utilisé.`,
-          challengeIf: (a) => /salesforce|outil|solution|fonctionnalité|feature|tool/i.test(a),
-          challenge: `Cette citation parle encore d'outils ou de technologie. Réécrivez-la du point de vue du client : ce qu'il a accompli, pas ce qu'il a utilisé.`,
-          enChallenge: `The quote still talks about tools and technology. Rewrite it from the customer's perspective: what they accomplished, not what they used.`,
-          key: 'pr_quote'
-        }
-      ],
-      en: [
-        {
-          type: 'coach',
-          text: `Excellent work. We now have the foundations.\n\nLet's write the <strong>Press Release</strong>.\n\n<strong>Heading</strong>: in one line, what is the product or service?\n\nRule: must be understandable without knowing Salesforce or internal jargon.`,
-          key: 'pr_heading'
-        },
-        {
-          type: 'coach',
-          text: `<strong>Subheading</strong>: for which specific customer, what is the main benefit?\n\nFormat: "For [who], [benefit] through [what]"`,
-          key: 'pr_subheading'
-        },
-        {
-          type: 'coach',
-          text: `<strong>Customer Quote</strong>: what would the customer say if the solution had genuinely created that value?\n\nWrite in first person. No jargon. What they'd feel, what they'd have accomplished.`,
-          challengeIf: (a) => /salesforce|tool|solution|feature|platform/i.test(a),
-          challenge: `La citation parle encore d'outils. Réécris du point de vue du client.`,
-          enChallenge: `The quote still talks about tools and technology. Rewrite from the customer's perspective: what they accomplished, not what they used.`,
-          key: 'pr_quote'
-        }
-      ]
-    },
-    faq: {
-      fr: [
-        {
-          type: 'coach',
-          text: `Dernière étape — la <strong>FAQ</strong>.\n\nUne bonne FAQ ne rassure pas : elle pose les vraies questions difficiles.\n\n<strong>Quelle est la principale raison pour laquelle cette idée pourrait ne pas fonctionner ?</strong>\n\nSoyez honnête. C'est la question la plus importante de tout le processus.`,
-          key: 'faq_risk'
-        },
-        {
-          type: 'coach',
-          text: `<strong>Quelles sont les hypothèses que vous devez encore valider avant de savoir si cette idée mérite vraiment d'être poursuivie ?</strong>`,
-          key: 'faq_assumptions'
-        },
-        {
-          type: 'coach',
-          text: `Pour terminer : <strong>quelle est la prochaine conversation ou action concrète</strong> qui vous permettrait de valider votre hypothèse la plus importante ?\n\nQuelque chose de faisable dès la semaine prochaine.`,
-          key: 'faq_next'
-        }
-      ],
-      en: [
-        {
-          type: 'coach',
-          text: `Last step — the <strong>FAQ</strong>.\n\nA good FAQ should surface the hard questions, not just reassure.\n\n<strong>What is the main reason this idea could fail?</strong>\n\nBe honest. This is the most important one.`,
-          key: 'faq_risk'
-        },
-        {
-          type: 'coach',
-          text: `<strong>What assumptions do you still need to validate before knowing if this idea is truly worth pursuing?</strong>`,
-          key: 'faq_assumptions'
-        },
-        {
-          type: 'coach',
-          text: `Finally: <strong>what is the next concrete conversation or action</strong> that would let you validate the most important assumption?\n\nSomething you can do next week.`,
-          key: 'faq_next'
-        }
-      ]
-    }
+    destination: [
+      {
+        text: `Bienvenue. Je suis votre coach <strong>Customer-Backwards</strong>.\n\nUne règle guide tout le travail : on ne part pas de ce que Salesforce peut vendre. On part de ce que le client cherche à accomplir.\n\nCommençons par la destination.\n\n<strong>Dans 12 à 18 mois, si cette conversation aboutissait à une vraie transformation — qu'est-ce qui serait concrètement différent pour le client ?</strong>\n\nDécrivez un résultat observable : ce qu'il ferait mieux, plus vite, différemment, ou à moindre coût.`,
+        challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm|service cloud|marketing cloud|plateforme|fonctionnalité|feature|outil|tool|solution|implémentation/i.test(a) && a.length < 80,
+        challenge: `Vous décrivez une solution ou un outil. Revenez au client : dans 12 mois, qu'est-ce qui aurait changé dans son quotidien, ses décisions, ses résultats ? Pas ce qu'il utilise — ce qu'il accomplit.`,
+        key: 'destination'
+      },
+      {
+        text: `Bien. Pour ancrer cette destination dans la réalité :\n\n<strong>Qu'est-ce que le client ferait qu'il ne peut pas faire aujourd'hui ?</strong>\n\nOu : quelle décision pourrait-il prendre, qu'il ne peut pas prendre aujourd'hui faute d'information, de temps, ou de clarté ?`,
+        challengeIf: (a) => a.length < 25,
+        challenge: `Pouvez-vous être plus précis ? Une destination vague ("mieux travailler") ne crée pas de conversation. Cherchez le changement concret, observable, mesurable.`,
+        key: 'destination_decision'
+      }
+    ],
+    client: [
+      {
+        text: `Qui est concerné par cette transformation ?\n\n<strong>Décrivez précisément la personne pour qui cela compte :</strong>\n\n— Quel rôle, dans quelle organisation ?\n— Qui serait le sponsor de ce changement ?\n— Qui en serait l'utilisateur final ?\n— Qui en serait le bénéficiaire (parfois différent de l'utilisateur) ?`,
+        challengeIf: (a) => /entreprise|client|société|company|business|organisation|grand.?compte/i.test(a) && !/directeur|responsable|manager|vp|director|head|chef|coo|cfo|cmo|ceo|role|poste|titre|équipe/i.test(a),
+        challenge: `"L'entreprise" n'est pas un client — c'est un marché. Qui précisément, dans cette organisation, ressent ce problème ? Quel rôle, quelle responsabilité, quel quotidien ?`,
+        key: 'client_qui'
+      },
+      {
+        text: `<strong>Ce qui compte pour eux aujourd'hui, c'est…</strong>\n\nComplétez cette phrase. Pas ce que vous pensez qu'ils devraient vouloir — ce qui les préoccupe vraiment dans leur rôle, leur agenda, leur évaluation.`,
+        challengeIf: (a) => /salesforce|solution|outil|technologie|implémentation|projet/i.test(a),
+        challenge: `Vous décrivez leurs attentes vis-à-vis d'une solution. Reformulez : dans leur rôle, qu'est-ce qui compte pour eux — performance, risque, coût, image, relation client ? Ce qu'ils défendent auprès de leur hiérarchie.`,
+        key: 'client_preoccupe'
+      }
+    ],
+    probleme: [
+      {
+        text: `<strong>Qu'est-ce qui empêche le client d'atteindre cette destination aujourd'hui ?</strong>\n\nNe commencez pas par Salesforce. Cherchez d'abord le problème business : sa nature, ses conséquences, ce que le client essaie déjà de faire.`,
+        challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm|service cloud|n'a pas|manque de|besoin de|il faut|need/i.test(a) && a.length < 70,
+        challenge: `Vous décrivez ce qui manque côté solution. Décrivez d'abord le problème du côté client : quelle situation le bloque ? Quelle friction dans son quotidien ? Quelle décision ne peut-il pas prendre ?`,
+        key: 'probleme_nature'
+      },
+      {
+        text: `<strong>Comment le client résout-il ce problème aujourd'hui ?</strong>\n\nTout client a une solution actuelle — même imparfaite. Excel, processus manuels, plusieurs outils, ou "on fait comme ça depuis toujours".\n\nQu'est-ce qui ne fonctionne pas suffisamment bien dans son approche actuelle ?`,
+        challengeIf: (a) => /rien|pas de solution|aucune solution|nothing/i.test(a),
+        challenge: `Tout client gère son problème d'une façon ou d'une autre, même inefficacement. Cherchez encore : processus manuels, fichiers Excel, réunions de coordination, outil dépassé ? Et pourquoi ça reste insuffisant ?`,
+        key: 'probleme_actuel'
+      }
+    ],
+    opportunite: [
+      {
+        text: `Imaginons qu'on puisse supprimer la contrainte principale que vous venez d'identifier.\n\n<strong>Si cette contrainte disparaissait, qu'est-ce qui deviendrait possible ?</strong>\n\nÀ ce stade, ne cherchez pas encore à faire entrer la réponse dans un produit Salesforce. Cherchez d'abord la meilleure réponse au problème du client.`,
+        challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm|service cloud|marketing cloud/i.test(a) && a.length < 70,
+        challenge: `Vous nommez déjà Salesforce. Ce n'est pas encore l'étape. Décrivez d'abord ce qui deviendrait possible pour le client — la capacité nouvelle, le comportement différent, le résultat accessible. On reviendra à Salesforce ensuite.`,
+        key: 'opportunite'
+      },
+      {
+        text: `<strong>Pourquoi le client changerait-il ?</strong>\n\nQu'est-ce qui ferait basculer sa décision en faveur de ce changement plutôt que de continuer avec son approche actuelle ?`,
+        challengeIf: (a) => a.length < 25,
+        challenge: `Creusez : le changement a un coût (temps, énergie, risque, budget). Qu'est-ce qui rendrait ce changement suffisamment attractif pour valoir cet effort ? Quelle douleur devient insupportable, quelle opportunité devient trop grande à manquer ?`,
+        key: 'opportunite_pourquoi_changer'
+      }
+    ],
+    conditions: [
+      {
+        text: `<strong>Quelles conditions doivent être réunies pour que cette transformation soit possible ?</strong>\n\nExplorez chaque dimension :\n\n— <strong>Business</strong> : quel modèle de valeur ? quel ROI ?\n— <strong>People</strong> : quels comportements ou rôles doivent évoluer ?\n— <strong>Process</strong> : quels processus doivent changer ?\n— <strong>Data</strong> : quelles données sont nécessaires ? Sont-elles fiables ?\n— <strong>Adoption</strong> : qu'est-ce qui doit changer dans le quotidien des utilisateurs ?`,
+        challengeIf: (a) => a.length < 40,
+        challenge: `Une transformation réussie dépasse toujours la technologie. Quelles conditions humaines, organisationnelles, ou de gouvernance doivent être réunies pour que ça fonctionne vraiment — pas juste sur le papier ?`,
+        key: 'conditions'
+      },
+      {
+        text: `<strong>Parmi ces conditions, laquelle est la plus critique — celle dont l'absence ferait échouer la transformation même si tout le reste était en place ?</strong>`,
+        key: 'conditions_critique'
+      }
+    ],
+    salesforce: [
+      {
+        text: `C'est maintenant seulement que l'on regarde les solutions.\n\n<strong>Où Salesforce peut-il réellement créer de la valeur dans cette transformation ?</strong>\n\nSoyez précis : quelles capacités Salesforce permettent ou accélèrent cette transformation ?`,
+        challengeIf: (a) => /salesforce|einstein|agentforce|data cloud|crm/i.test(a) && !/parce que|car|permet|accélère|résout|apporte|crée|différencie/i.test(a),
+        challenge: `Vous nommez un produit — mais pas encore sa contribution. En quoi cette capacité répond-elle spécifiquement au problème identifié ? Qu'est-ce qu'elle permet que le client ne pourrait pas faire autrement ?`,
+        key: 'salesforce_contribution'
+      },
+      {
+        text: `Soyez honnête :\n\n<strong>Qu'est-ce que Salesforce ne résout pas à lui seul dans cette transformation ?</strong>\n\nQu'est-ce qu'il faudrait combiner, construire, intégrer, ou changer en dehors de Salesforce ?`,
+        key: 'salesforce_limites'
+      }
+    ],
+    conversation: [
+      {
+        text: `Dernière étape. Ce document ne sert pas à préparer un pitch — il sert à préparer une conversation.\n\n<strong>Formulez votre hypothèse :</strong>\n\n"Notre hypothèse est que…"\n\nQue pensez-vous comprendre du problème du client que lui-même n'a peut-être pas encore formulé clairement ?`,
+        challengeIf: (a) => /salesforce|solution|outil|produit|fonctionnalité/i.test(a) && a.length < 80,
+        challenge: `Votre hypothèse parle encore de solution. Une hypothèse customer-backwards porte sur le problème ou la situation du client — pas sur ce que vous proposez. Reformulez : "Notre hypothèse est que ce client fait face à… et que cela lui coûte…"`,
+        key: 'hypothese'
+      },
+      {
+        text: `<strong>Quelle est la question la plus importante que vous devez poser lors de cette conversation ?</strong>\n\nPas pour valider votre solution — pour vérifier si votre compréhension de la situation du client est juste.`,
+        challengeIf: (a) => /présenter|montrer|démontrer|expliquer notre|parler de notre/i.test(a),
+        challenge: `Vous décrivez ce que vous allez faire dans la conversation — pas la question que vous allez poser. Quelle question permettrait de savoir si votre hypothèse est juste ou fausse ?`,
+        key: 'question_cle'
+      },
+      {
+        text: `<strong>Quelle décision ou quel mouvement cette conversation doit-elle permettre ?</strong>\n\nQu'est-ce qui doit avoir changé — dans la compréhension du client, dans la relation, dans la suite — lorsque vous quittez la pièce ?`,
+        key: 'conversation_objectif'
+      }
+    ]
   };
 
-  // ─────────────────────────────────────────
-  //  INIT
-  // ─────────────────────────────────────────
-  function startCoach() {
+  // Mapping answers → test final blocks
+  const CANVAS_MAP = {
+    client_qui:        { block: 'tb-qui',        label: '① Pour qui ?' },
+    destination:       { block: 'tb-quoi',       label: '② Pour quoi ?' },
+    probleme_actuel:   { block: 'tb-maintenant', label: '③ Pourquoi maintenant ?' },
+    opportunite_pourquoi_changer: { block: 'tb-changer', label: '④ Pourquoi changer ?' },
+    conditions_critique: { block: 'tb-conditions', label: '⑤ Ce qui doit être vrai' },
+    salesforce_contribution: { block: 'tb-salesforce', label: '⑥ Pourquoi Salesforce ?' },
+  };
+
+  // ─── PERSISTENCE ───
+  const STORAGE_KEY = 'cb_sessions';
+
+  function loadSessions() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+    catch { return {}; }
+  }
+
+  function saveSession() {
+    if (!currentSessionId) return;
+    const sessions = loadSessions();
+    sessions[currentSessionId] = {
+      id: currentSessionId,
+      answers,
+      currentStep,
+      subStep,
+      waitingForChallenge,
+      clientLabel: answers.client_qui || answers.destination || 'Session en cours',
+      updatedAt: Date.now(),
+      stepsDone: currentStep,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+  }
+
+  function deleteSession(id, e) {
+    e.stopPropagation();
+    const sessions = loadSessions();
+    delete sessions[id];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+    renderSessionsList();
+  }
+
+  function renderSessionsList() {
+    const sessions = loadSessions();
+    const keys = Object.keys(sessions).sort((a,b) => (sessions[b].updatedAt||0) - (sessions[a].updatedAt||0));
+    const container = document.getElementById('sessions-container');
+    const list = document.getElementById('sessions-list');
+
+    if (keys.length === 0) {
+      container.style.display = 'none';
+      return;
+    }
+
+    container.style.display = 'flex';
+    list.innerHTML = keys.map(id => {
+      const s = sessions[id];
+      const date = new Date(s.updatedAt).toLocaleDateString('fr-FR', { day:'numeric', month:'short' });
+      const pct = Math.round((s.stepsDone / STEPS.length) * 100);
+      const label = (s.clientLabel || 'Session').substring(0, 50);
+      return `
+        <div class="session-item" onclick="resumeSession('${id}')">
+          <div class="session-item-info">
+            <div class="session-item-client">${label}</div>
+            <div class="session-item-date">Mis à jour le ${date}</div>
+          </div>
+          <span class="session-item-progress">${pct}%</span>
+          <button class="session-item-delete" onclick="deleteSession('${id}', event)" title="Supprimer">×</button>
+        </div>`;
+    }).join('');
+  }
+
+  function resumeSession(id) {
+    const sessions = loadSessions();
+    const s = sessions[id];
+    if (!s) return;
+    currentSessionId = id;
+    answers = s.answers || {};
+    currentStep = s.currentStep || 0;
+    subStep = s.subStep || 0;
+    waitingForChallenge = s.waitingForChallenge || false;
+
     document.getElementById('screen-hero').classList.remove('active');
     document.getElementById('screen-coach').classList.add('active');
+
+    buildProgressBar();
+    updateProgress();
+    rebuildCanvas();
+    // Re-show coach message from current position
+    showCoachMessage();
+  }
+
+  function rebuildCanvas() {
+    Object.entries(answers).forEach(([key, value]) => {
+      updateCanvas(key, value);
+    });
+  }
+
+  // ─── NAVIGATION ───
+  function startNew() {
+    currentSessionId = 'cb_' + Date.now();
+    currentStep = 0;
+    subStep = 0;
+    answers = {};
+    waitingForChallenge = false;
+
+    document.getElementById('screen-hero').classList.remove('active');
+    document.getElementById('screen-coach').classList.add('active');
+    document.getElementById('messages').innerHTML = '';
+
     buildProgressBar();
     showCoachMessage();
   }
 
+  function goHome() {
+    saveSession();
+    document.getElementById('screen-coach').classList.remove('active');
+    document.getElementById('screen-final').classList.remove('active');
+    document.getElementById('screen-hero').classList.add('active');
+    renderSessionsList();
+  }
+
+  // ─── PROGRESS ───
   function buildProgressBar() {
     const bar = document.getElementById('progress-bar');
     bar.innerHTML = STEPS.map((s, i) =>
-      `<div class="progress-step" id="prog-${i}" title="${s.id}"></div>`
+      `<div class="progress-step" id="prog-${i}" title="${s.label}"></div>`
     ).join('');
     updateProgress();
   }
@@ -1427,66 +1205,25 @@
     STEPS.forEach((_, i) => {
       const el = document.getElementById(`prog-${i}`);
       if (!el) return;
-      el.classList.remove('done', 'active');
-      if (i < currentStep) el.classList.add('done');
-      else if (i === currentStep) el.classList.add('active');
+      el.className = 'progress-step' + (i < currentStep ? ' done' : i === currentStep ? ' active' : '');
     });
     const badge = document.getElementById('step-badge');
-    const name = document.getElementById('step-name');
+    const name  = document.getElementById('step-name');
     if (badge) badge.textContent = STEPS[currentStep]?.num || '';
-    if (name) name.textContent = STEPS[currentStep]?.id?.toUpperCase() || '';
+    if (name)  name.textContent  = STEPS[currentStep]?.label || '';
+
+    // Update canvas status
+    const pct = Math.round((currentStep / STEPS.length) * 100);
+    const statusEl = document.getElementById('canvas-status');
+    if (statusEl) statusEl.textContent = pct === 100 ? 'Complet ✓' : `${pct}% complété`;
   }
 
-  // ─────────────────────────────────────────
-  //  MESSAGING
-  // ─────────────────────────────────────────
-  function showCoachMessage() {
-    const stepId = STEPS[currentStep]?.id;
-    if (!stepId) { showFinalScreen(); return; }
-
-    const stepScript = SCRIPT[stepId]?.[lang];
-    if (!stepScript || subStep >= stepScript.length) {
-      advanceStep();
-      return;
-    }
-
-    const msg = stepScript[subStep];
-    showTyping(() => {
-      appendMessage('coach', msg.text);
-    });
-  }
-
-  function showTyping(callback) {
-    const msgs = document.getElementById('messages');
-    const typing = document.createElement('div');
-    typing.className = 'msg msg-coach';
-    typing.id = 'typing-indicator';
-    typing.innerHTML = `
-      <div class="msg-coach-avatar">🤖</div>
-      <div class="msg-bubble">
-        <div class="typing-dots"><span></span><span></span><span></span></div>
-      </div>`;
-    msgs.appendChild(typing);
-    scrollToBottom();
-    setTimeout(() => {
-      typing.remove();
-      callback();
-    }, 900);
-  }
-
-  function appendMessage(role, text) {
+  // ─── MESSAGES ───
+  function appendMessage(type, html) {
     const msgs = document.getElementById('messages');
     const div = document.createElement('div');
-    div.className = `msg msg-${role}`;
-
-    if (role === 'coach') {
-      div.innerHTML = `
-        <div class="msg-coach-avatar">🤖</div>
-        <div class="msg-bubble">${text.replace(/\n/g, '<br/>')}</div>`;
-    } else {
-      div.innerHTML = `<div class="msg-bubble">${text.replace(/\n/g, '<br/>')}</div>`;
-    }
-
+    div.className = `msg msg-${type}`;
+    div.innerHTML = html.replace(/\n/g, '<br/>');
     msgs.appendChild(div);
     scrollToBottom();
   }
@@ -1494,21 +1231,45 @@
   function appendChallenge(text) {
     const msgs = document.getElementById('messages');
     const div = document.createElement('div');
-    div.className = 'challenge-block';
-    div.style.animation = 'msg-in 0.3s ease forwards';
-    div.textContent = text;
+    div.className = 'msg msg-challenge';
+    div.innerHTML = '⚡ ' + text.replace(/\n/g, '<br/>');
     msgs.appendChild(div);
     scrollToBottom();
   }
 
-  function scrollToBottom() {
-    const panel = document.getElementById('chat-panel');
-    setTimeout(() => panel.scrollTop = panel.scrollHeight, 50);
+  function appendTyping() {
+    const msgs = document.getElementById('messages');
+    const div = document.createElement('div');
+    div.className = 'msg msg-coach';
+    div.id = 'typing-indicator';
+    div.innerHTML = '<span class="typing-dots"><span></span><span></span><span></span></span>';
+    msgs.appendChild(div);
+    scrollToBottom();
+    return div;
   }
 
-  // ─────────────────────────────────────────
-  //  USER INPUT
-  // ─────────────────────────────────────────
+  function scrollToBottom() {
+    const anchor = document.getElementById('scroll-anchor');
+    if (anchor) anchor.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ─── COACH MESSAGE ───
+  function showCoachMessage() {
+    const stepId = STEPS[currentStep]?.id;
+    const stepScript = SCRIPT[stepId];
+    if (!stepScript || subStep >= stepScript.length) return;
+
+    const msg = stepScript[subStep];
+    if (!msg || msg.type === 'user') return;
+
+    const typing = appendTyping();
+    setTimeout(() => {
+      typing.remove();
+      appendMessage('coach', msg.text);
+    }, 600 + Math.random() * 300);
+  }
+
+  // ─── SEND MESSAGE ───
   function handleKey(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -1520,35 +1281,29 @@
     const input = document.getElementById('user-input');
     const text = input.value.trim();
     if (!text) return;
-
     input.value = '';
     appendMessage('user', text);
 
     const stepId = STEPS[currentStep]?.id;
-    const stepScript = SCRIPT[stepId]?.[lang];
+    const stepScript = SCRIPT[stepId];
     const msg = stepScript?.[subStep];
-
     if (!msg) return;
 
-    // Save answer
     answers[msg.key] = text;
+    updateCanvas(msg.key, text);
+    saveSession();
 
-    // Challenge logic
     if (!waitingForChallenge && msg.challengeIf && msg.challengeIf(text)) {
-      const challengeText = lang === 'en' ? msg.enChallenge : msg.challenge;
-      setTimeout(() => appendChallenge(challengeText), 400);
+      setTimeout(() => appendChallenge(msg.challenge), 400);
       waitingForChallenge = true;
       return;
     }
 
     waitingForChallenge = false;
-
-    // Update canvas
-    updateCanvas(msg.key, text);
-
-    // Next sub-step
     subStep++;
-    if (!stepScript || subStep >= stepScript.length) {
+
+    const currentStepScript = SCRIPT[STEPS[currentStep]?.id];
+    if (!currentStepScript || subStep >= currentStepScript.length) {
       advanceStep();
     } else {
       setTimeout(() => showCoachMessage(), 500);
@@ -1560,13 +1315,13 @@
     subStep = 0;
     waitingForChallenge = false;
     updateProgress();
+    saveSession();
 
     if (currentStep >= STEPS.length) {
-      setTimeout(() => showFinalScreen(), 600);
+      setTimeout(() => showFinalScreen(), 700);
       return;
     }
 
-    // Separator
     const msgs = document.getElementById('messages');
     const sep = document.createElement('div');
     sep.style.cssText = 'height:1px;background:rgba(255,255,255,0.06);margin:16px 0;';
@@ -1575,214 +1330,213 @@
     setTimeout(() => showCoachMessage(), 400);
   }
 
-  // ─────────────────────────────────────────
-  //  CANVAS UPDATES
-  // ─────────────────────────────────────────
+  // ─── CANVAS UPDATE ───
   function updateCanvas(key, value) {
-    const map = {
-      customer_who: { id: 'canvas-heading', label: 'Heading' },
-      problem_goal: { id: 'canvas-problem', label: 'Problem' },
-      value: { id: 'canvas-value', label: 'Value / Differentiation' },
-      solution: { id: 'canvas-solution-canvas', label: 'Solution' },
-      pr_heading: { id: 'canvas-heading', label: 'Heading', isPR: true },
-      pr_subheading: { id: 'canvas-subheading', label: 'Subheading', isPR: true },
-      pr_quote: { id: 'canvas-quote', label: 'Customer Quote', isPR: true },
-    };
+    const mapping = CANVAS_MAP[key];
+    if (!mapping) return;
 
-    if (map[key]) {
-      const block = document.getElementById(map[key].id);
-      if (block) {
-        const content = block.querySelector('.prfaq-block-content');
-        if (content) {
-          content.innerHTML = `<span style="color:var(--white)">${value}</span>`;
-          block.style.borderLeftColor = 'var(--green)';
-          const section = document.getElementById('canvas-pr');
-          if (section) section.classList.add('visible');
-        }
-      }
+    const block = document.getElementById(mapping.block);
+    if (!block) return;
+
+    const ph = block.querySelector('[id$="-ph"]');
+    if (ph) {
+      ph.outerHTML = `<div class="test-block-value">${value}</div>`;
+    } else {
+      const existing = block.querySelector('.test-block-value');
+      if (existing) existing.textContent = value;
     }
+    block.classList.add('filled');
 
-    // FAQ entries
-    if (key === 'faq_risk' || key === 'faq_assumptions' || key === 'faq_next') {
-      const labels = {
-        faq_risk: lang === 'fr' ? '⚠ Biggest Risk' : '⚠ Biggest Risk',
-        faq_assumptions: lang === 'fr' ? '? Hypothèses à valider' : '? Assumptions to validate',
-        faq_next: lang === 'fr' ? '→ Prochaine action' : '→ Next action'
-      };
-      const faqList = document.getElementById('canvas-faq-list');
-      const item = document.createElement('div');
-      item.className = 'prfaq-block';
-      item.innerHTML = `
-        <div class="prfaq-block-label">${labels[key]}</div>
-        <div class="prfaq-block-content"><span style="color:var(--white)">${value}</span></div>`;
-      item.style.animation = 'msg-in 0.4s ease forwards';
-      faqList?.appendChild(item);
-
-      const faqSection = document.getElementById('canvas-faq-section');
-      if (faqSection) faqSection.classList.add('visible');
-    }
-
-    // Show export when we have enough
-    const keys = Object.keys(answers);
-    if (keys.length >= 4) {
+    const filled = document.querySelectorAll('.test-block.filled').length;
+    if (filled >= 3) {
       const exportEl = document.getElementById('export-actions');
-      if (exportEl) {
-        exportEl.style.opacity = '1';
-        exportEl.style.pointerEvents = 'auto';
-        exportEl.style.display = 'flex';
-      }
+      if (exportEl) exportEl.style.display = 'flex';
     }
   }
 
-  // ─────────────────────────────────────────
-  //  FINAL SCREEN
-  // ─────────────────────────────────────────
+  // ─── FINAL SCREEN ───
   function showFinalScreen() {
     document.getElementById('screen-coach').classList.remove('active');
     document.getElementById('screen-final').classList.add('active');
 
-    // Build PR preview
-    const preview = document.getElementById('final-prfaq-preview');
-    preview.innerHTML = `
-      <div style="margin-bottom:var(--space-md);">
-        <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--cloud-blue-68);margin-bottom:8px;">PRESS RELEASE</p>
-        <div class="pr-heading">${answers.pr_heading || answers.customer_who || '—'}</div>
-        <div class="pr-subheading">${answers.pr_subheading || answers.problem_goal || '—'}</div>
-      </div>
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:var(--space-md) 0;">
-      <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
-        ${answers.problem_friction ? `<p style="font-size:13px;line-height:1.65;color:var(--cloud-blue-95)"><strong style="color:var(--cloud-blue-68)">Problem:</strong> ${answers.problem_friction}</p>` : ''}
-        ${answers.solution ? `<p style="font-size:13px;line-height:1.65;color:var(--cloud-blue-95)"><strong style="color:var(--cloud-blue-68)">Solution:</strong> ${answers.solution}</p>` : ''}
-        ${answers.value ? `<p style="font-size:13px;line-height:1.65;color:var(--cloud-blue-95)"><strong style="color:var(--cloud-blue-68)">Value:</strong> ${answers.value}</p>` : ''}
-        ${answers.pr_quote ? `<blockquote style="border-left:3px solid var(--electric-blue-50);padding-left:var(--space-md);font-style:italic;color:var(--cloud-blue-80);font-size:14px;">"${answers.pr_quote}"</blockquote>` : ''}
-      </div>`;
+    const grid = document.getElementById('final-grid');
+    const questions = [
+      { num: '① Pour qui ?', q: 'Quel client / métier est concerné ?', key: 'client_qui' },
+      { num: '② Pour quoi ?', q: 'Quel changement cherche-t-il réellement ?', key: 'destination' },
+      { num: '③ Pourquoi maintenant ?', q: "Qu'est-ce qui rend le sujet important aujourd'hui ?", key: 'probleme_actuel' },
+      { num: '④ Pourquoi changer ?', q: "Qu'est-ce qui ne fonctionne plus suffisamment bien ?", key: 'opportunite_pourquoi_changer' },
+      { num: '⑤ Ce qui doit être vrai', q: 'Quelles conditions doivent être réunies ?', key: 'conditions_critique' },
+      { num: '⑥ Pourquoi Salesforce ?', q: 'Quelle contribution spécifique pouvons-nous apporter ?', key: 'salesforce_contribution' },
+    ];
 
-    // Meta grid
-    const grid = document.getElementById('meta-grid');
-    grid.innerHTML = `
-      <div class="meta-card glass-dark">
-        <div class="meta-card-title green">✓ What we know</div>
-        <ul class="meta-list">
-          ${answers.customer_who ? `<li>Client : ${answers.customer_who.substring(0,80)}…</li>` : ''}
-          ${answers.problem_goal ? `<li>Problème : ${answers.problem_goal.substring(0,80)}…</li>` : ''}
-          ${answers.alternatives ? `<li>Alternatives actuelles identifiées</li>` : ''}
-        </ul>
+    grid.innerHTML = questions.map(item => `
+      <div class="test-final-card">
+        <div class="test-final-num">${item.num}</div>
+        <div class="test-final-q">${item.q}</div>
+        <div class="test-final-a">${answers[item.key] || '<em style="color:rgba(255,255,255,0.3)">Non renseigné</em>'}</div>
       </div>
-      <div class="meta-card glass-dark">
-        <div class="meta-card-title orange">~ What we assume</div>
-        <ul class="meta-list">
-          ${answers.faq_assumptions ? answers.faq_assumptions.split('.').filter(s=>s.trim()).map(s=>`<li>${s.trim()}</li>`).join('') : '<li>—</li>'}
-        </ul>
-      </div>
-      <div class="meta-card glass-dark">
-        <div class="meta-card-title hot-pink">⚡ Biggest risk</div>
-        <ul class="meta-list">
-          ${answers.faq_risk ? `<li>${answers.faq_risk.substring(0,120)}</li>` : '<li>—</li>'}
-        </ul>
-      </div>
-      <div class="meta-card glass-dark">
-        <div class="meta-card-title violet">→ Next conversation</div>
-        <ul class="meta-list">
-          ${answers.faq_next ? `<li>${answers.faq_next.substring(0,120)}</li>` : '<li>—</li>'}
-        </ul>
-      </div>`;
+    `).join('');
   }
 
-  // ─────────────────────────────────────────
-  //  EXPORT
-  // ─────────────────────────────────────────
+  // ─── EXPORT ───
   function buildMarkdown() {
-    return `# PRFAQ — ${answers.pr_heading || answers.customer_who || 'Draft'}
+    return `# Customer-Backwards — Préparation conversation client
 
-## Press Release
+## Test Final
 
-**Heading:** ${answers.pr_heading || '—'}
+**① Pour qui ?**
+${answers.client_qui || '—'}
 
-**Subheading:** ${answers.pr_subheading || '—'}
+**② Pour quoi ?**
+${answers.destination || '—'}
 
-**Problem:** ${answers.problem_goal || '—'}
+**③ Pourquoi maintenant ?**
+${answers.probleme_actuel || '—'}
 
-${answers.problem_friction ? `*Friction:* ${answers.problem_friction}` : ''}
+**④ Pourquoi changer ?**
+${answers.opportunite_pourquoi_changer || '—'}
 
-**Alternatives actuelles:** ${answers.alternatives || '—'}
+**⑤ Ce qui doit être vrai**
+${answers.conditions_critique || '—'}
 
-**Solution:** ${answers.solution || '—'}
-
-**Différenciation:** ${answers.solution_diff || '—'}
-
-**Value:** ${answers.value || '—'}
-
-> "${answers.pr_quote || '—'}"
-
----
-
-## FAQ
-
-**Biggest risk:** ${answers.faq_risk || '—'}
-
-**Hypothèses à valider:** ${answers.faq_assumptions || '—'}
-
-**Prochaine action:** ${answers.faq_next || '—'}
+**⑥ Pourquoi Salesforce ?**
+${answers.salesforce_contribution || '—'}
 
 ---
 
-*Généré avec PRFAQ Coach — From Specialist to Trend Setter*
+## Détail de la préparation
+
+**Destination :** ${answers.destination || '—'}
+
+**Décision permise :** ${answers.destination_decision || '—'}
+
+**Client :** ${answers.client_qui || '—'}
+
+**Ce qui compte pour eux :** ${answers.client_preoccupe || '—'}
+
+**Problème :** ${answers.probleme_nature || '—'}
+
+**Solution actuelle :** ${answers.probleme_actuel || '—'}
+
+**Opportunité :** ${answers.opportunite || '—'}
+
+**Pourquoi changer :** ${answers.opportunite_pourquoi_changer || '—'}
+
+**Conditions :** ${answers.conditions || '—'}
+
+**Condition critique :** ${answers.conditions_critique || '—'}
+
+**Contribution Salesforce :** ${answers.salesforce_contribution || '—'}
+
+**Limites Salesforce :** ${answers.salesforce_limites || '—'}
+
+**Hypothèse :** ${answers.hypothese || '—'}
+
+**Question clé :** ${answers.question_cle || '—'}
+
+**Objectif de la conversation :** ${answers.conversation_objectif || '—'}
+
+---
+*Généré avec Customer-Backwards — From Specialist to Trend Setter*
 `;
   }
 
-  function exportPDF() {
+  function exportMarkdown() {
     const md = buildMarkdown();
     const blob = new Blob([md], { type: 'text/markdown' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `PRFAQ-${Date.now()}.md`;
+    a.download = `Customer-Backwards-${Date.now()}.md`;
     a.click();
     URL.revokeObjectURL(url);
   }
 
   function exportSlack() {
     const md = buildMarkdown();
-    const encoded = encodeURIComponent(md);
-    // Copy to clipboard as fallback
     navigator.clipboard.writeText(md).then(() => {
-      alert('✓ PRFAQ copié dans le presse-papier.\n\nCollez-le dans un Canvas Slack pour le partager avec votre équipe.\n\n(Ctrl+Shift+P dans Slack > Nouveau Canvas)');
+      alert('✓ Préparation copiée dans le presse-papier.\n\nCollez-la dans un Canvas Slack pour la partager avec votre équipe.\n(Ctrl+Shift+P dans Slack → Nouveau Canvas)');
     }).catch(() => {
-      prompt('Copiez ce PRFAQ et collez-le dans un Canvas Slack :', md);
+      prompt('Copiez ce contenu et collez-le dans un Canvas Slack :', md);
     });
   }
 
-  // ─────────────────────────────────────────
-  //  LANG
-  // ─────────────────────────────────────────
-  function setLang(l) {
-    lang = l;
-    document.getElementById('lang-fr').classList.toggle('active', l === 'fr');
-    document.getElementById('lang-en').classList.toggle('active', l === 'en');
-  }
-
-  // ─────────────────────────────────────────
-  //  RESTART
-  // ─────────────────────────────────────────
+  // ─── RESTART ───
   function restartCoach() {
+    if (currentSessionId) {
+      const sessions = loadSessions();
+      delete sessions[currentSessionId];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+    }
+    currentSessionId = 'cb_' + Date.now();
     currentStep = 0; subStep = 0;
     answers = {}; waitingForChallenge = false;
     document.getElementById('messages').innerHTML = '';
-    document.getElementById('canvas-faq-list').innerHTML = '';
-    // Reset canvas blocks
-    ['canvas-heading','canvas-subheading','canvas-problem','canvas-solution-canvas','canvas-value','canvas-quote'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        const c = el.querySelector('.prfaq-block-content');
-        if (c) c.innerHTML = '<span class="prfaq-block-placeholder">En attente…</span>';
-        el.style.borderLeftColor = '';
-      }
-    });
     document.getElementById('screen-final').classList.remove('active');
     document.getElementById('screen-coach').classList.add('active');
-    updateProgress();
+
+    // Reset canvas
+    ['tb-qui','tb-quoi','tb-maintenant','tb-changer','tb-conditions','tb-salesforce'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('filled');
+        const v = el.querySelector('.test-block-value');
+        if (v) {
+          const labels = {
+            'tb-qui': ['tb-qui-ph', 'Quel client / métier est concerné ?'],
+            'tb-quoi': ['tb-quoi-ph', 'Quel changement cherche-t-il réellement ?'],
+            'tb-maintenant': ['tb-maintenant-ph', "Qu'est-ce qui rend le sujet important aujourd'hui ?"],
+            'tb-changer': ['tb-changer-ph', "Qu'est-ce qui ne fonctionne plus suffisamment bien ?"],
+            'tb-conditions': ['tb-conditions-ph', 'Quelles conditions doivent être réunies ?'],
+            'tb-salesforce': ['tb-salesforce-ph', 'Quelle contribution spécifique pouvons-nous apporter ?'],
+          };
+          const [phId, phText] = labels[id];
+          v.outerHTML = `<div class="test-block-placeholder" id="${phId}">${phText}</div>`;
+        }
+      }
+    });
+    document.getElementById('export-actions').style.display = 'none';
+
+    buildProgressBar();
     showCoachMessage();
   }
+
+  // ─── FLIP CARDS ───
+  function flipCard(card) {
+    const inner = card.querySelector('.step-card-inner');
+    const back  = card.querySelector('.step-card-back');
+    const isFlipping = !card.classList.contains('flipped');
+
+    if (isFlipping) {
+      const pillH = inner.offsetHeight;
+      card.dataset.pillH = pillH;
+      back.style.position = 'static';
+      back.style.transform = 'none';
+      back.style.width = inner.offsetWidth + 'px';
+      const backH = back.scrollHeight;
+      back.style.position = '';
+      back.style.transform = '';
+      back.style.width = '';
+      inner.style.height = pillH + 'px';
+      requestAnimationFrame(() => {
+        inner.style.height = Math.max(backH, pillH) + 'px';
+        card.classList.add('flipped');
+      });
+    } else {
+      const pillH = parseInt(card.dataset.pillH) || inner.offsetHeight;
+      inner.style.height = pillH + 'px';
+      card.classList.remove('flipped');
+      inner.addEventListener('transitionend', function onEnd(e) {
+        if (e.propertyName === 'height' && !card.classList.contains('flipped')) {
+          inner.style.height = 'auto';
+          inner.removeEventListener('transitionend', onEnd);
+        }
+      });
+    }
+  }
+
+  // ─── INIT ───
+  renderSessionsList();
   </script>
 </body>
 </html>
