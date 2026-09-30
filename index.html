@@ -186,11 +186,11 @@
     /* Step cards */
     .hero-steps {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
       flex-wrap: nowrap;
       width: 100%;
-      max-width: 1000px;
+      max-width: 1040px;
       align-items: stretch;
     }
     .step-card {
@@ -209,62 +209,74 @@
                   height  0.5s cubic-bezier(0.4,0.2,0.2,1);
     }
     .step-card.flipped .step-card-inner { transform: rotateY(180deg); }
+
+    /* Recto : en flux, disposition verticale pour les étiquettes longues */
     .step-card-front {
-      position: absolute;
-      inset: 0;
-      border-radius: 99px;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      padding: 8px 10px;
-      background: rgba(6,106,254,0.15);
-      border: 1px solid rgba(6,106,254,0.35);
-      color: var(--cloud-blue-80);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      white-space: normal;
-      text-align: center;
-      word-break: break-word;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 2px;
+      width: 100%;
+      border-radius: var(--radius-xl);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      padding: 10px 8px;
+      background: rgba(6,106,254,0.15);
+      border: 1px solid rgba(6,106,254,0.40);
+      color: var(--cloud-blue-80);
+      font-family: 'SalesforceSans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      box-sizing: border-box;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
     .step-card:hover .step-card-front {
-      background: rgba(6,106,254,0.32);
+      background: rgba(6,106,254,0.28);
       border-color: var(--electric-blue-50);
       color: var(--white);
-      box-shadow: 0 0 14px rgba(6,106,254,0.3);
     }
-    .step-num { font-size: 13px; opacity: 0.72; flex-shrink: 0; }
+    .step-num {
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    /* Verso : absolu, fond blanc Salesforce, texte sombre */
     .step-card-back {
       position: absolute;
       inset: 0;
-      border-radius: 12px;
+      border-radius: var(--radius-lg);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       transform: rotateY(180deg);
       background: #FFFFFF;
-      border: 1px solid rgba(1,118,211,0.3);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
-      padding: 10px;
+      border: 1px solid rgba(1,118,211,0.25);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 4px;
+      gap: 5px;
+      overflow: hidden;
     }
     .step-back-title {
-      font-size: 10px;
+      font-family: 'SalesforceSans', sans-serif;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
       color: var(--electric-blue-50);
+      line-height: 1.2;
     }
     .step-back-text {
+      font-family: 'SalesforceSans', sans-serif;
       font-size: 11px;
-      line-height: 1.55;
-      color: var(--black);
+      line-height: 1.6;
+      color: #3E3E3C;
+      font-weight: 400;
     }
 
     /* Buttons */
