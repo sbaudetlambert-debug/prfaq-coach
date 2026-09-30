@@ -191,37 +191,39 @@
       flex-wrap: nowrap;
       width: 100%;
       max-width: 1040px;
-      align-items: stretch;
+      align-items: center;
     }
     .step-card {
-      flex: 1 1 0;
-      min-width: 0;
+      flex: 0 0 136px;
+      width: 136px;
+      min-width: 136px;
+      max-width: 136px;
       perspective: 900px;
       cursor: pointer;
     }
     .step-card-inner {
       position: relative;
       width: 100%;
-      height: auto;
-      min-height: 40px;
+      height: 64px;
       transform-style: preserve-3d;
       transition: transform 0.5s cubic-bezier(0.4,0.2,0.2,1),
                   height  0.5s cubic-bezier(0.4,0.2,0.2,1);
     }
     .step-card.flipped .step-card-inner { transform: rotateY(180deg); }
 
-    /* Recto : en flux, disposition verticale pour les étiquettes longues */
+    /* Recto : position absolute sur l'inner fixe, centrage parfait */
     .step-card-front {
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2px;
-      width: 100%;
       border-radius: var(--radius-xl);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      padding: 10px 8px;
+      padding: 8px;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.55);
       color: var(--white);
@@ -230,9 +232,7 @@
       font-weight: 700;
       line-height: 1.2;
       text-align: center;
-      word-break: break-word;
-      overflow-wrap: break-word;
-      hyphens: auto;
+      overflow: hidden;
       box-sizing: border-box;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
@@ -723,7 +723,7 @@
       .hero-title { font-size: 32px; }
       .hero-astro { width: 120px; }
       .hero-steps { flex-wrap: wrap; gap: 8px; }
-      .step-card { flex: 0 0 calc(50% - 4px); }
+      .step-card { flex: 0 0 calc(50% - 4px); min-width: calc(50% - 4px); max-width: calc(50% - 4px); width: calc(50% - 4px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1513,9 +1513,10 @@ ${answers.salesforce_contribution || '—'}
   }
 
   // ─── FLIP CARDS ───
+  const PILL_H = 64; // hauteur fixe des pastilles hero (sync avec CSS)
+
   function flipCard(card) {
     const allCards = Array.from(document.querySelectorAll('.step-card'));
-    const inner = card.querySelector('.step-card-inner');
     const isFlipping = !card.classList.contains('flipped');
 
     if (isFlipping) {
@@ -1533,13 +1534,6 @@ ${answers.salesforce_contribution || '—'}
         b.style.width = '';
       });
 
-      // Store pill height on each card before flipping
-      allCards.forEach(c => {
-        const i = c.querySelector('.step-card-inner');
-        if (!c.dataset.pillH) c.dataset.pillH = i.offsetHeight;
-        i.style.height = c.dataset.pillH + 'px';
-      });
-
       // Animate all inners to the same max height
       requestAnimationFrame(() => {
         allCards.forEach(c => {
@@ -1549,18 +1543,15 @@ ${answers.salesforce_contribution || '—'}
       });
     } else {
       card.classList.remove('flipped');
-      // Check if any other card is still flipped
       const anyFlipped = allCards.some(c => c.classList.contains('flipped'));
       if (!anyFlipped) {
-        // All unflipped — restore all to pill height
+        // Restore all to fixed pill height
         allCards.forEach(c => {
           const i = c.querySelector('.step-card-inner');
-          const pillH = parseInt(c.dataset.pillH) || i.offsetHeight;
-          i.style.height = pillH + 'px';
+          i.style.height = PILL_H + 'px';
           i.addEventListener('transitionend', function onEnd(e) {
             if (e.propertyName === 'height') {
-              i.style.height = 'auto';
-              c.dataset.pillH = '';
+              i.style.height = PILL_H + 'px';
               i.removeEventListener('transitionend', onEnd);
             }
           });
