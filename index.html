@@ -103,6 +103,19 @@
     .screen { display: none; }
     .screen.active { display: flex; }
 
+    /* ══ NAV LOGO GLOBAL ══ */
+    .sf-nav {
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      z-index: 100;
+    }
+    .sf-nav img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
     /* ══ HERO ══ */
     #screen-hero {
       min-height: 100dvh;
@@ -469,7 +482,7 @@
     .msg-challenge {
       background: rgba(221,122,1,0.12);
       border: 1px solid rgba(221,122,1,0.3);
-      color: #FFD580;
+      color: var(--orange);
       align-self: flex-start;
       max-width: 86%;
     }
@@ -732,6 +745,10 @@
   </style>
 </head>
 <body>
+
+  <nav class="sf-nav" aria-label="Salesforce">
+    <img src="./assets/salesforce-logo.svg" alt="Salesforce" />
+  </nav>
 
   <!-- ══ HERO ══ -->
   <section id="screen-hero" class="screen active">
