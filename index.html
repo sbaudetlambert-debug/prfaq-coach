@@ -191,7 +191,7 @@
       flex-wrap: nowrap;
       width: 100%;
       max-width: 1000px;
-      align-items: flex-start;
+      align-items: stretch;
     }
     .step-card {
       flex: 1 1 0;
@@ -1503,35 +1503,58 @@ ${answers.salesforce_contribution || '—'}
 
   // ─── FLIP CARDS ───
   function flipCard(card) {
+    const allCards = Array.from(document.querySelectorAll('.step-card'));
     const inner = card.querySelector('.step-card-inner');
-    const back  = card.querySelector('.step-card-back');
     const isFlipping = !card.classList.contains('flipped');
 
     if (isFlipping) {
-      const pillH = inner.offsetHeight;
-      card.dataset.pillH = pillH;
-      back.style.position = 'static';
-      back.style.transform = 'none';
-      back.style.width = inner.offsetWidth + 'px';
-      const backH = back.scrollHeight;
-      back.style.position = '';
-      back.style.transform = '';
-      back.style.width = '';
-      inner.style.height = pillH + 'px';
+      // Measure natural height of every back face to find the tallest
+      let maxBackH = 0;
+      allCards.forEach(c => {
+        const b = c.querySelector('.step-card-back');
+        const i = c.querySelector('.step-card-inner');
+        b.style.position = 'static';
+        b.style.transform = 'none';
+        b.style.width = i.offsetWidth + 'px';
+        maxBackH = Math.max(maxBackH, b.scrollHeight);
+        b.style.position = '';
+        b.style.transform = '';
+        b.style.width = '';
+      });
+
+      // Store pill height on each card before flipping
+      allCards.forEach(c => {
+        const i = c.querySelector('.step-card-inner');
+        if (!c.dataset.pillH) c.dataset.pillH = i.offsetHeight;
+        i.style.height = c.dataset.pillH + 'px';
+      });
+
+      // Animate all inners to the same max height
       requestAnimationFrame(() => {
-        inner.style.height = Math.max(backH, pillH) + 'px';
+        allCards.forEach(c => {
+          c.querySelector('.step-card-inner').style.height = maxBackH + 'px';
+        });
         card.classList.add('flipped');
       });
     } else {
-      const pillH = parseInt(card.dataset.pillH) || inner.offsetHeight;
-      inner.style.height = pillH + 'px';
       card.classList.remove('flipped');
-      inner.addEventListener('transitionend', function onEnd(e) {
-        if (e.propertyName === 'height' && !card.classList.contains('flipped')) {
-          inner.style.height = 'auto';
-          inner.removeEventListener('transitionend', onEnd);
-        }
-      });
+      // Check if any other card is still flipped
+      const anyFlipped = allCards.some(c => c.classList.contains('flipped'));
+      if (!anyFlipped) {
+        // All unflipped — restore all to pill height
+        allCards.forEach(c => {
+          const i = c.querySelector('.step-card-inner');
+          const pillH = parseInt(c.dataset.pillH) || i.offsetHeight;
+          i.style.height = pillH + 'px';
+          i.addEventListener('transitionend', function onEnd(e) {
+            if (e.propertyName === 'height') {
+              i.style.height = 'auto';
+              c.dataset.pillH = '';
+              i.removeEventListener('transitionend', onEnd);
+            }
+          });
+        });
+      }
     }
   }
 
